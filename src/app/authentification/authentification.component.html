@@ -1,0 +1,35 @@
+<form #authForm="ngForm" (ngSubmit)="onSubmitForm(authForm)">
+    <div class="login-box-container">
+        <div class="login-box">
+            <h1>{{isConnexion ? "Bon Retour" : "Bienvenue"}}</h1>
+            <p>
+                Veuillez entrez vos identifiants 
+            </p>
+            <div class="group-login">
+                <button type="button" [ngClass]="{'actif-button': isConnexion, 'desactif-button': !isConnexion}" (click)="connexion(authForm)">Se connecter</button>
+                <button type="button" [ngClass]="{'actif-button': !isConnexion, 'desactif-button': isConnexion}" (click)="inscription(authForm)">S'inscrire</button>
+            </div>
+            <div *ngIf="!isConnexion" class="group-name" ngModelGroup="groupName">
+                <img class="name-icon" src="../../assets/images/user-icon-svgrepo-com.svg" alt="">
+                <input class="name-text" type="text" ngModel name="name" required>
+            </div>
+            <div class="group-email" ngModelGroup="groupEmail" [class.error-connect]="isError">
+                <img class="email-icon" src="../../assets/images/email-svgrepo-com.svg" alt="">
+                <input class="email-text" type="text" ngModel name="email" required email>
+            </div>
+            <div class="group-password" ngModelGroup="groupPassword" [class.error-connect]="isError">
+                <img class="password-icon" src="../../assets/images/password-svgrepo-com.svg" alt="">
+                <input class="password-text" type="password" ngModel name="password"
+                required>
+            </div>
+            <div *ngIf="isError" style="
+                color: red;
+                font-size: 12px;
+            ">{{errorMess}}</div>
+            <button *ngIf="!isLoading" [ngClass]="{'submit-button':true, 'submit-button-valid':authForm.valid}" type="submit" [disabled]="!authForm.valid" >
+                {{isConnexion ? "Se connecter" : "S'inscrire"}}
+            </button>
+            <span *ngIf="isLoading" class="loader"></span>
+        </div>
+    </div>
+</form>

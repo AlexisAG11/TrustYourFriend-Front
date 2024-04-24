@@ -1,0 +1,100 @@
+.post {
+    border-bottom: 1px solid rgb(236, 236, 236);
+    display: grid;
+    gap: 7px;
+    grid-template-rows: 50px 160px 1fr;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.feed-auteur {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--feed-color);
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    position: relative;
+}
+.feed-info-photo {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+}
+.feed-commentaire {
+    background-color: var(--feed-color);;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 10px;
+    font-size: 14px;
+
+}
+
+.photo {
+    width: 30%;
+    margin-left: 10px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;    
+}
+.info {
+    background-color: var(--feed-color);;
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    padding-left: 20px;
+
+}
+
+.feed-pp {
+    border: 2px solid rgb(143, 143, 143);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.feed-nom,
+.feed-type,
+.feed-adresse {
+    display: flex;
+    flex-direction: row;
+}
+.name-wrapper,
+.type-wrapper,
+.adresse-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.delete-address-container {
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    right: 10px;
+    /* left: 90%; */
+}
+.delete-address-container:hover {
+    background-color: rgb(166, 166, 166);
+}
+.delete-address {
+    width: 20px;
+}

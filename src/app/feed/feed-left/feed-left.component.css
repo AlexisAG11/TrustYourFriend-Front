@@ -1,0 +1,92 @@
+.filterbar-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-logo {
+    background-color: rgb(230, 230, 230);
+    opacity: 0.6;
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+    margin-top: 50px;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;    
+}
+
+.img-filter {
+    width: 40px
+}
+
+.filter-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px
+}
+
+.friend-container,
+.type-container,
+.adresse-container {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.friend-text,
+.type-text,
+.adresse-text {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bottom-arrow {
+    width: 20px;
+}
+
+.list-friends,
+.list-type,
+.list-adresse {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgb(165, 165, 165);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.checkbox:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+.one-friend,
+.one-type,
+.one-adresse {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+}
+ /* essayer de garder le même nom  */
+.filter-type-friend,
+.filter-type-type,
+.filter-type-adresse {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid rgb(209, 200, 209);
+}
+.filter-type-adresse {
+    border-bottom: none;
+}

@@ -1,0 +1,151 @@
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 60px;
+  font-size: 18px; 
+}
+
+.login-box-container {
+    /* background-image: linear-gradient(rgba(0, 0, 0,.5), rgba(0,0,0,.5)), url("../../assets/images/jimmy-dean-Yn0l7uwBrpw-unsplash.jpg"); */
+    background-color: rgba(0, 0, 0, 0.5);
+    background-position: center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    width: 100%; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    background-color: rgb(241, 241, 241);
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.group-login,
+.group-email,
+.group-password,
+.group-name {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(220, 220, 220);
+    width: var(--width-group);
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.group-login {
+    margin-bottom: 40px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.actif-button,
+.desactif-button {
+    flex: 1;
+    border-width: 0;
+    border-radius: 10px;
+}
+.actif-button {
+    background-color:rgb(241,241,241);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    cursor: pointer;
+}
+.desactif-button {
+    background-color:rgb(220, 220, 220);
+    color: gray;
+    cursor: pointer;
+}
+
+.email-icon,
+.password-icon,
+.name-icon {
+    width: 17px;
+    margin-left: 15px;
+}
+
+.email-text,
+.password-text,
+.name-text {
+    flex: 1;
+    background-color: transparent;
+    margin-left: 15px;
+    margin-right: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-width: 0;
+}
+
+.submit-button {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;    width: 300px;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    border-width: 0;
+    width: var(--width-group);
+}
+.submit-button-valid{
+    cursor: pointer;
+}
+
+input {
+    font-size: 16px;
+    font-family: inherit;
+}
+
+button {
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.group-email.ng-invalid.ng-touched,
+.group-password.ng-invalid.ng-touched,
+.group-name.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.error-toast {
+    background-color: rgb(179, 0, 0);
+    padding: 5px;
+    color: white;
+    border-radius: 3px;
+    margin-top: 40px;
+}
+
+.error-connect {
+    border: 1px solid red;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    margin-top: 30px;
+    border: 5px solid #888888;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 

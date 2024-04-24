@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --width-group: 350px;
+    --feed-color : rgb(245, 245, 245);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets/font/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets/font/Roboto-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+  }

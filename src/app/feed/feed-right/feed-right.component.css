@@ -1,0 +1,87 @@
+.friend-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 70px
+}
+
+.friend-logo {
+    background-color: rgb(230, 230, 230);
+    opacity: 0.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;    
+}
+
+.img-friend {
+    width: 40px
+}
+
+.all-friends {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    margin-left:20px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;     */
+}
+
+.friend {
+    display: flex;
+    flex-direction: row;    
+    gap: 10px;
+    align-items: center;
+}
+
+.pp {
+    border: 2px solid rgb(143, 143, 143);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.button-ami-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    background-color: white;
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+}
+
+.button-ami {
+    width: 120px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 600;
+    background-color: rgb(15, 20, 25);
+    color: white;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+}

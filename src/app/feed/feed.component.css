@@ -1,0 +1,23 @@
+.global-grid {
+    display: grid;
+    grid-template-columns: 180px 500px 180px;
+    justify-content: center;
+}
+
+.filterbar {
+    /* position: fixed; */
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 200;
+    height: 800px;
+    /* width: 180px; */
+}
+
+.friendbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 200;
+    height: 800px;
+}
