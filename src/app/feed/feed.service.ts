@@ -21,4 +21,8 @@ export class FeedService {
   getRecipe(){
     return this.places.slice();
   }
+
+  fetchAllFriend(){
+    return this.http.get<any>(environment.apiUrl + '/friends');
+  }
 }

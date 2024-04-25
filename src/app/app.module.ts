@@ -16,6 +16,7 @@ import { AuthentificationInterceptor } from './authentification/authentification
 import { PostComponent } from './feed/feed-center/post/post.component';
 import { TimeAgoPipe } from 'src/pipe/time-ago.pipe';
 import { AddAddressComponent } from './add-address/add-address.component';
+import { FriendsListComponent } from './feed/feed-right/friends-list/friends-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddAddressComponent } from './add-address/add-address.component';
     FeedHeaderComponent,
     PostComponent,
     TimeAgoPipe,
-    AddAddressComponent
+    AddAddressComponent,
+    FriendsListComponent
   ],
   imports: [
     BrowserModule,

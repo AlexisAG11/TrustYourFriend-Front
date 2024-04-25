@@ -3,28 +3,18 @@
         <img class="img-friend" src="../../assets/images/friends-icon.svg" alt="">
     </div>
 </div>
+<div class="userActive">
+        <div class="pp-user-active-container">
+            <img class="pp-user-active" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+        </div>
+    <div class="name-user-active">Moi</div>
+    <div class="logout" (click)="logout()">
+        <img class="logout-img" src="../../assets/images/logout-svgrepo-com.svg" alt="">
+    </div>
+</div>
 <div class="button-ami-container">
     <button class="button-ami"> AJOUTER AMI</button>
 </div>
 <div class="all-friends">
-    <div class="friend">
-        <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-        <div class="name">Maxime</div>
-    </div>
-    <div class="friend">
-        <img class="pp" src="../../assets/images/avatar-svgrepo-com (1).svg" alt="">
-        <div class="name">Anna</div>
-    </div>
-    <div class="friend">
-        <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-        <div class="name">Edouard</div>
-    </div>
-    <div class="friend">
-        <img class="pp" src="../../assets/images/avatar-svgrepo-com (1).svg" alt="">
-        <div class="name">Estelle</div>
-    </div>
-    <div class="friend">
-        <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-        <div class="name">Jean</div>
-    </div>
+    <app-friends-list *ngFor="let friend of friends" [friend]="friend"></app-friends-list>
 </div>

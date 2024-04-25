@@ -1,6 +1,6 @@
 .global-grid {
     display: grid;
-    grid-template-columns: 180px 500px 180px;
+    grid-template-columns: 180px 500px 200px;
     justify-content: center;
 }
 

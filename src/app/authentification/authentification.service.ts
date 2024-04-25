@@ -53,4 +53,8 @@ export class AuthentificationService {
   getLocalStorage(){
     return localStorage.getItem('token');
   }
+
+  deleteLocalStorage(){
+    localStorage.removeItem('token');
+  }
 }
