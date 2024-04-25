@@ -31,7 +31,10 @@ export class FeedRightComponent implements OnInit {
   logout(){
     this.authService.deleteLocalStorage();
     this.router.navigate(['/auth']);
+  }
 
+  addFriend(){
+    this.router.navigate(['/add-friends'])
   }
 
 }

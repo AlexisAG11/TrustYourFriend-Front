@@ -1,0 +1,100 @@
+body {
+    font-family: Roboto, Arial;
+    color: white;
+    margin: 0;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form {
+    background-color: rgb(23,34,52);
+    width: 1000px;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.info-wrapper {
+    flex: 1;
+    padding-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.info-content-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+}
+
+input {
+    width: 400px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px ;
+    font-size: 18px;
+}
+
+.img-ajouter-adresse {
+    object-fit: cover;
+    width: 40%;
+}
+.location-logo {
+    background-color: rgb(230, 230, 230);
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; 
+}
+
+.location-img {
+    width: 60px;
+}
+
+.location-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 410px;
+}
+
+.button-wrapper {
+    width: 410px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(196,193,150);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; 
+}

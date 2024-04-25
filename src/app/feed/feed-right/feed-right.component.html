@@ -6,6 +6,7 @@
 <div class="userActive">
         <div class="pp-user-active-container">
             <img class="pp-user-active" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+            <div class="online"></div>
         </div>
     <div class="name-user-active">Moi</div>
     <div class="logout" (click)="logout()">
@@ -13,7 +14,7 @@
     </div>
 </div>
 <div class="button-ami-container">
-    <button class="button-ami"> AJOUTER AMI</button>
+    <button class="button-ami" (click)="addFriend()"> AJOUTER AMI</button>
 </div>
 <div class="all-friends">
     <app-friends-list *ngFor="let friend of friends" [friend]="friend"></app-friends-list>

@@ -17,6 +17,7 @@ import { PostComponent } from './feed/feed-center/post/post.component';
 import { TimeAgoPipe } from 'src/pipe/time-ago.pipe';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { FriendsListComponent } from './feed/feed-right/friends-list/friends-list.component';
+import { AddFriendsComponent } from './add-friends/add-friends.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FriendsListComponent } from './feed/feed-right/friends-list/friends-lis
     PostComponent,
     TimeAgoPipe,
     AddAddressComponent,
-    FriendsListComponent
+    FriendsListComponent,
+    AddFriendsComponent
   ],
   imports: [
     BrowserModule,

@@ -83,9 +83,11 @@
 }
 
 .pp-user-active {
-    width: 38px;
-    height: 38px;
-    padding: 5px;
+    border: 2px solid rgb(143, 143, 143);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 2px;
 }
 
 .name-user-active{
@@ -113,9 +115,18 @@
 }
 
 .pp-user-active-container{
-    border: 2px solid rgb(143, 143, 143);
-    border-radius: 50%;
     display: flex;
     justify-content: center;
-    overflow: hidden;
+    position: relative; 
+}
+
+.online {
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    background-color: rgb(1, 212, 1);
+    width: 10px;
+    height: 10px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
 }

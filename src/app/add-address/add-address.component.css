@@ -3,18 +3,19 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: white;
+    color: rgb(241, 241, 241);
     font-size: 14px;
+    background-color: rgb(234, 234, 234);
 }
 
 .form {
     background-color: rgb(23,34,52);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     width: 1000px;
     height: 600px;
     display: flex;
     flex-direction: row;
-    border-radius: 5px;
+    border-radius: 20px;
     overflow: hidden;
 }
 

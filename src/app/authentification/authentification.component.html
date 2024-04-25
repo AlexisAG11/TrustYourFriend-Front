@@ -6,8 +6,9 @@
                 Veuillez entrez vos identifiants 
             </p>
             <div class="group-login">
-                <button type="button" [ngClass]="{'actif-button': isConnexion, 'desactif-button': !isConnexion}" (click)="connexion(authForm)">Se connecter</button>
-                <button type="button" [ngClass]="{'actif-button': !isConnexion, 'desactif-button': isConnexion}" (click)="inscription(authForm)">S'inscrire</button>
+                <div class="btn-slider" [ngClass]="{'btn-slider-slide': !isConnexion}"></div>
+                <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isConnexion}" (click)="connexion(authForm)">Se connecter</button>
+                <button type="button" class="log-button" [ngClass]="{'desac-btn' : isConnexion}" (click)="inscription(authForm)">S'inscrire</button>
             </div>
             <div *ngIf="!isConnexion" class="group-name" ngModelGroup="groupName">
                 <img class="name-icon" src="../../assets/images/user-icon-svgrepo-com.svg" alt="">
