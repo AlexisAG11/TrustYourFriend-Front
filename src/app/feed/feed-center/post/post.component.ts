@@ -8,12 +8,13 @@ import { environment } from 'src/environments/environment.development';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
   animations: [
-    trigger('fadeOut', [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0}), // Initial style
+        animate('0.2s', style({ opacity: 1})) // Animation
+      ]),
       transition(':leave', [
-        animate('0.3s', style({ 
-          opacity: 0,
-          height: 0,
-          marginBottom: 0 }))
+        animate('0.1s', style({ opacity: 0,}))
       ])
     ])
   ]
@@ -25,6 +26,7 @@ export class PostComponent implements OnInit{
   @Input() idUser: any;
   @Input() index: number = 0;
   deletePlace: boolean = false;
+  editMode:boolean = false;
 
   constructor(private http: HttpClient){}
 
@@ -35,10 +37,17 @@ export class PostComponent implements OnInit{
     if(confirm("Etes vous sûr de vouloir supprimer " + name)) {
       this.http.delete(environment.apiUrl + '/places/' + id).subscribe( data => {
         console.log(name + ' bien supprimer')
-        this.deletePlace = true;
+        const inde = this.places.indexOf(this.place);
+        if (inde !== -1) {
+          this.places.splice(inde, 1);
+        }
         console.log(this.places)
       })
     }
+  }
+
+  onEditAddress(){
+    this.editMode = true;
   }
 
 }

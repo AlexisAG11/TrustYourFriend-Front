@@ -1,5 +1,5 @@
 
 <app-feed-header></app-feed-header>
 <div *ngIf="places && idUser" class="feed">
-    <app-post *ngFor="let place of places; let i = index" [place] = "place" [places]="places" [idUser]="idUser" [index]="i"></app-post>
+    <app-post @fadeOut *ngFor="let place of places; let i = index" [place]="place" [places]="places" [idUser]="idUser" [index]="i"></app-post>
 </div>

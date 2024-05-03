@@ -1,12 +1,15 @@
-<div @fadeOut class="post" *ngIf="!deletePlace">
+<div @fadeInOut class="post" *ngIf="!editMode">
     <div class="feed-auteur">
         <img class="feed-pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
         <div class="name">{{place.createdByName}}</div>
         <div style="font-size: 20px;">&#183;</div>
         <div style="font-size: 14px;"> {{place.updatedAt | timeAgo}} </div>
-        <div *ngIf="idUser === place.createdById" class="delete-address-container" (click)="onDeleteAddress(place.name, place._id)">
+        <button type="button" *ngIf="idUser === place.createdById" class="edit-address-container" (click)="onEditAddress()">
+            <img class="edit-address" src="../../assets/images/edit-svgrepo-com.svg" alt="" >
+        </button>
+        <button type="button" *ngIf="idUser === place.createdById" class="delete-address-container" (click)="onDeleteAddress(place.name, place._id)">
             <img class="delete-address" src="../../assets/images/trash-alt-svgrepo-com.svg" alt="" >
-        </div>
+        </button>
     </div>
     <div class="feed-info-photo">
         <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
@@ -37,3 +40,51 @@
         {{place.comment}}
     </div>
 </div>
+<form @fadeInOut class="post" *ngIf="editMode">
+    <div class="feed-auteur">
+        <img class="feed-pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+        <div class="name">{{place.createdByName}}</div>
+        <div style="font-size: 20px;">&#183;</div>
+        <div style="font-size: 14px;"> {{place.updatedAt | timeAgo}} </div>
+        <button type="button" *ngIf="idUser === place.createdById" class="edit-address-container" (click)="onEditAddress()">
+            <img class="edit-address" src="../../assets/images/edit-svgrepo-com.svg" alt="" >
+        </button>
+        <button type="button" *ngIf="idUser === place.createdById" class="delete-address-container" (click)="onDeleteAddress(place.name, place._id)">
+            <img class="delete-address" src="../../assets/images/trash-alt-svgrepo-com.svg" alt="" >
+        </button>
+    </div>
+    <div *ngIf="editMode" class="feed-info-photo">
+        <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+        <div class="info">
+            <div class="feed-nom">
+                <div>Nom :</div>
+                <!-- <div class="name-wrapper">
+                    <div>
+                        {{place.name}}
+                    </div>
+                </div> -->
+                <input type="text" value="{{ place.name }}">
+            </div>
+            <div class="feed-type">
+                <div>Type :</div>
+                <!-- <div class="type-wrapper">
+                    <div>{{place.type}}</div>
+                </div> -->
+                <input type="text" value="{{ place.type}}">
+            </div>
+            <div class="feed-adresse">
+                <div>Adresse :</div>
+                <!-- <div class="adresse-wrapper">
+                    <div>{{place.address}}</div>
+                </div> -->
+                <input type="text" value="{{ place.address }}">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="editMode" class="feed-commentaire">
+        <textarea class="textarea-style" value="{{place.comment}}"></textarea>
+    </div>
+    <div class="validation-img-container">
+        <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+    </div>    
+</form>

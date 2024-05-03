@@ -3,11 +3,22 @@ import { Subscription } from 'rxjs';
 import { FeedService } from '../feed.service';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthentificationService } from 'src/app/authentification/authentification.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-feed-center',
   templateUrl: './feed-center.component.html',
-  styleUrls: ['./feed-center.component.css']
+  styleUrls: ['./feed-center.component.css'],
+  animations: [
+    trigger('fadeOut', [
+      transition(':leave', [
+        animate('0.3s', style({ 
+          opacity: 0,
+          height: 0,
+           }))
+      ])
+    ])
+  ]
 })
 export class FeedCenterComponent implements OnInit,OnDestroy {
 
