@@ -1,4 +1,9 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-add-friends',
@@ -6,7 +11,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-friends.component.css']
 })
 export class AddFriendsComponent {
-  onSubmitFriends(){
 
+  constructor(private http: HttpClient, private router: Router){}
+
+  errorMsg: string = "";
+  isError : boolean = false;
+
+  onSubmitFriends(form: NgForm){
+    const email = form.value.email;
+    this.http.patch(environment.apiUrl + '/friends/add', 
+      {
+        friendEmail: email
+      }
+    ).subscribe(res => {
+      this.router.navigate(['/feed']);
+    },
+    error => {
+      this.isError = true;
+      this.errorMsg = error.error.msg;
+      setTimeout(() => {
+        this.isError = false;
+      }, 2000)
+    })
   }
+
 }

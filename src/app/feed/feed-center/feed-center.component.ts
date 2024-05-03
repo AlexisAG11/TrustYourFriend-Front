@@ -12,6 +12,7 @@ import { AuthentificationService } from 'src/app/authentification/authentificati
 export class FeedCenterComponent implements OnInit,OnDestroy {
 
   sub: Subscription = new Subscription();
+  sub2: Subscription = new Subscription();
   places = [];
   idUser = "";
   constructor(private feedService: FeedService, private authService: AuthentificationService){}
@@ -21,12 +22,18 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
       this.places = data.places;
       this.idUser = data.user;
     })
+
+    this.sub2 = this.feedService.placeSubject.subscribe( data => {
+      this.places = data.places;
+    })
+
   }
 
 
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }

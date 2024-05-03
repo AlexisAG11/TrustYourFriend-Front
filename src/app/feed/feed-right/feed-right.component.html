@@ -17,5 +17,5 @@
     <button class="button-ami" (click)="addFriend()"> AJOUTER AMI</button>
 </div>
 <div class="all-friends">
-    <app-friends-list *ngFor="let friend of friends" [friend]="friend"></app-friends-list>
+    <app-friends-list @fadeOut *ngFor="let friend of friends" [friend]="friend" [friends]="friends"></app-friends-list>
 </div>

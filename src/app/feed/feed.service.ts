@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.development';
 export class FeedService {
 
   private places = [];
+  placeSubject = new Subject<any>();
 
   constructor(private http: HttpClient) { } 
 

@@ -3,6 +3,7 @@
     flex-direction: row;    
     gap: 10px;
     align-items: center;
+    position: relative;
 }
 
 .pp {
@@ -16,4 +17,22 @@
 .name {
     font-weight: 600;
     font-size: 16px;
+}
+
+.delete-friend-container {
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    right: 10px;
+}
+.delete-friend-container:hover {
+    background-color: rgb(166, 166, 166);
+}
+.delete-friend {
+    width: 22px;
 }

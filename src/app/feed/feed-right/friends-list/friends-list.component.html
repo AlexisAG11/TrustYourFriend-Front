@@ -1,4 +1,7 @@
 <div class="friend">
     <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
     <div class="name">{{friend.name}}</div>
+    <div class="delete-friend-container" (click)="onDeleteFriend(friend.name, friend._id)">
+        <img class="delete-friend" src="../../assets/images/trash-alt-svgrepo-com.svg" alt="" >
+    </div>
 </div>

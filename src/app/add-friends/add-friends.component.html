@@ -1,22 +1,27 @@
-<form #friendsForm="ngForm" (ngSubmit)="onSubmitFriends()"></form>
-<div class="form-container">
-    <div class="form">
-        <div class="info-wrapper">
-            <div class="info">
-                <div class="location-logo-container">
-                    <div class="location-logo">
-                        <img class="location-img" src="../../assets/images/friends-icon.svg" alt="">
+<form #friendsForm="ngForm" (ngSubmit)="onSubmitFriends(friendsForm)">
+    <div class="form-container">
+        <div class="form">
+            <button type="button" class="goback-logo" [routerLink]="['/feed']">
+                <img class="goback-img" src="../../assets/images/back-svgrepo-com.svg" alt="">
+            </button>
+            <div class="info-wrapper">
+                <div class="info">
+                    <div class="friend-logo-container">
+                        <div class="friend-logo">
+                            <img class="friend-img" src="../../assets/images/friends-icon.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="info-content-title">EMAIL</div>
+                        <input type="text" ngModel name="email" required>
+                        <p class="errorMessage" *ngIf="isError">{{errorMsg}}</p>
+                    </div>
+                    <div class="button-wrapper">
+                        <button type="submit" [ngClass]="{'submit-button':true, 'submit-button-valid':friendsForm.valid}" [disabled]="!friendsForm.valid" > AJOUTER</button>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="info-content-title">EMAIL</div>
-                    <input type="text">
-                </div>
-                <div class="button-wrapper">
-                    <button> AJOUTER</button>
-                </div>
             </div>
+            <img class="img-ajouter-adresse" src="../../assets/images/alice-pasqual-ticuPP5l2qg-unsplash.jpg" alt="">
         </div>
-        <img class="img-ajouter-adresse" src="../../assets/images/alice-pasqual-ticuPP5l2qg-unsplash.jpg" alt="">
     </div>
-</div>
+</form>

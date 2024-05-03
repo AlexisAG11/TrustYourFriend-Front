@@ -1,6 +1,9 @@
 <form #addressForm="ngForm" (ngSubmit)="onSubmitAddress(addressForm)">
     <div class="form-container">
         <div class="form">
+            <button type="button" class="goback-logo" [routerLink]="['/feed']">
+                <img class="goback-img" src="../../assets/images/back-svgrepo-com.svg" alt="">
+            </button>
             <div class="info">
                 <div class="location-logo-container">
                     <div class="location-logo">
@@ -35,7 +38,7 @@
                     </div>
                 </div>
                 <div class="button-wrapper">
-                    <button type="submit" [ngClass]="{'submit-button':true, 'submit-button-valid':addressForm.valid}" [disabled]="!addressForm.valid" > AJOUTER</button>
+                    <button type="submit" [ngClass]="{'submit-button':true, 'submit-button-valid':addressForm.valid}" [disabled]="!addressForm.valid" >AJOUTER</button>
                 </div>
             </div>
             <img class="img-ajouter-adresse" src="../../assets/images/alice-pasqual-ticuPP5l2qg-unsplash.jpg" alt="">
