@@ -36,13 +36,52 @@
 
 }
 
-.photo {
-    width: 30%;
+.photo-container {
     margin-left: 10px;
-    object-fit: cover;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;    
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    width: 30%;
+    overflow: hidden;
+    position: relative;
 }
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.photo-edit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+}
+
+.upload-image {
+    width: 25px;
+}
+
+.upload-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #c9c9c9;
+    margin: 0;
+    padding: 13px;
+    border-radius: 50%;
+    border: 1px solid;
+    resize: none;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s;
+
+}
+.upload-btn:hover {
+    cursor: pointer;
+    background-color: rgb(166, 166, 166);
+}
+
 .info {
     background-color: var(--feed-color);;
     flex: 1;
@@ -70,6 +109,7 @@
 .feed-adresse {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .name-wrapper,
 .type-wrapper,
@@ -127,11 +167,51 @@
     box-sizing: border-box;
 }
 
-.validation-img {
+.validation-img,.unvalidation-img {
     width: 35px;
 }
 
-.validation-img-container {
+.img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.validation-btn,.unvalidation-btn {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+    resize: none;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
+    transition: opacity 0.3s;
+
+}
+
+.validation-btn:hover, .unvalidation-btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+input {
+    border-radius: 5px;
+    border: none;
+    padding: 5px ;
+    font-family: inherit;
+    font-size: inherit;
+    margin-left: 5px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+textarea {
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    padding: 5px ;
+    font-family: inherit;
+    font-size: 14px;
 }

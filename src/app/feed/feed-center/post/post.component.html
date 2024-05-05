@@ -12,7 +12,9 @@
         </button>
     </div>
     <div class="feed-info-photo">
-        <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+        <div class="photo-container">
+            <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+        </div>
         <div class="info">
             <div class="feed-nom">
                 <div>Nom :</div>
@@ -40,7 +42,7 @@
         {{place.comment}}
     </div>
 </div>
-<form @fadeInOut class="post" *ngIf="editMode">
+<form @fadeInOut #editPost="ngForm" (ngSubmit)="EditPost(editPost)" class="post" *ngIf="editMode" >
     <div class="feed-auteur">
         <img class="feed-pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
         <div class="name">{{place.createdByName}}</div>
@@ -54,37 +56,36 @@
         </button>
     </div>
     <div *ngIf="editMode" class="feed-info-photo">
-        <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+        <div class="photo-container">
+            <img class="photo-edit" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+            <button class="upload-btn">
+                <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
+            </button>
+        </div>
         <div class="info">
             <div class="feed-nom">
                 <div>Nom :</div>
-                <!-- <div class="name-wrapper">
-                    <div>
-                        {{place.name}}
-                    </div>
-                </div> -->
-                <input type="text" value="{{ place.name }}">
+                <input type="text" [(ngModel)]="place.name" name="name">
             </div>
             <div class="feed-type">
                 <div>Type :</div>
-                <!-- <div class="type-wrapper">
-                    <div>{{place.type}}</div>
-                </div> -->
-                <input type="text" value="{{ place.type}}">
+                <input type="text" [(ngModel)]="place.type" name="type">
             </div>
             <div class="feed-adresse">
                 <div>Adresse :</div>
-                <!-- <div class="adresse-wrapper">
-                    <div>{{place.address}}</div>
-                </div> -->
-                <input type="text" value="{{ place.address }}">
+                <input type="text" [(ngModel)]="place.address" name="adresse">
             </div>
         </div>
     </div>
     <div *ngIf="editMode" class="feed-commentaire">
-        <textarea class="textarea-style" value="{{place.comment}}"></textarea>
+        <textarea class="textarea-style" [(ngModel)]="place.comment" name="comment"></textarea>
     </div>
-    <div class="validation-img-container">
-        <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+    <div class="img-container">
+        <button type="submit" class="validation-btn">
+            <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+        </button>
+        <button type="button" class="unvalidation-btn" (click)="onUnvalidation()">
+            <img class="unvalidation-img" src="../../assets/images/cross-circle-1-svgrepo-com.svg" alt="">
+        </button>
     </div>    
 </form>

@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -48,6 +49,14 @@ export class PostComponent implements OnInit{
 
   onEditAddress(){
     this.editMode = true;
+  }
+
+  EditPost(form: NgForm){
+    
+  }
+
+  onUnvalidation(){
+    this.editMode = false;
   }
 
 }
