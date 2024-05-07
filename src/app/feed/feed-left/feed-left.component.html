@@ -1,4 +1,3 @@
-
 <div class="filter-logo-container">
     <div class="filter-logo">
         <img class="img-filter" src="../../assets/images/filter-filled-tool-symbol-svgrepo-com.svg" alt="">
@@ -12,14 +11,12 @@
         </div>
     </div>
     <div class="list-friends">
-        <div class="one-friend">
-            <div class="checkbox"></div>
-            <div>Anna</div>
-        </div>
-        <div class="one-friend">
-            <div class="checkbox"></div>
-            <div>Maxime</div>
-        </div>
+        <button *ngFor="let friend of friends" class="one-friend" (click)="filterByName(friend)">
+            <div [ngClass]="{'checkbox':true, 'checkbox-click':friend.checkboxFilled!== false}">
+                <img *ngIf="friend.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+            </div>  
+            <div class="div-name-friend">{{ friend['name'] }}</div>
+        </button>
     </div>
 </div>
 <div class="filter-type-type">

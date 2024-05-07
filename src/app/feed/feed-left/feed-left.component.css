@@ -64,11 +64,31 @@
     border-radius: 4px;
     border: 1px solid rgb(165, 165, 165);
     cursor: pointer;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     transition: background-color 0.2s;
+    padding: 2px;
 }
-.checkbox:hover {
-    background-color: rgb(220, 220, 220);
+.checkbox-click {
+    background-color: black;
 }
+
+.check-img {
+    width: 100%;
+    height: 100%;
+}
+.div-name-friend {
+    transition: color 0.3s ease;
+}
+.one-friend:hover .div-name-friend{
+    color: rgb(150, 150, 150);
+}
+/* .div-name-friend-hover{
+    background-color: gray;
+} */
+
 
 .one-friend,
 .one-type,
@@ -77,6 +97,18 @@
     flex-direction: row;
     gap: 7px;
     align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font: inherit;
+}
+.one-friend:hover,
+.one-type:hover,
+.one-adresse:hover {
+    cursor: pointer;
 }
  /* essayer de garder le même nom  */
 .filter-type-friend,

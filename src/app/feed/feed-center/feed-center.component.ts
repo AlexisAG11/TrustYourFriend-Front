@@ -31,6 +31,7 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.sub = this.feedService.fetchAllPlaces().subscribe(data => {
       this.places = data.places;
+      console.log(this.places);
       this.idUser = data.user;
     })
 

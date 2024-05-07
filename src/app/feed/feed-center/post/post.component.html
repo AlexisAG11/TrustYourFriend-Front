@@ -13,7 +13,7 @@
     </div>
     <div class="feed-info-photo">
         <div class="photo-container">
-            <img class="photo" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
+            <img class="photo" src="{{urlImage}}" alt="">
         </div>
         <div class="info">
             <div class="feed-nom">
@@ -42,7 +42,7 @@
         {{place.comment}}
     </div>
 </div>
-<form @fadeInOut #editPost="ngForm" (ngSubmit)="EditPost(editPost)" class="post" *ngIf="editMode" >
+<form @fadeInOut #editPost="ngForm" (ngSubmit)="EditPost(editPost, place._id)" class="post" *ngIf="editMode" >
     <div class="feed-auteur">
         <img class="feed-pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
         <div class="name">{{place.createdByName}}</div>
@@ -57,10 +57,11 @@
     </div>
     <div *ngIf="editMode" class="feed-info-photo">
         <div class="photo-container">
-            <img class="photo-edit" [src]="'http://localhost:3000/uploads/'+ place.image" alt="">
-            <button class="upload-btn">
+            <img class="photo-edit" src="{{urlImage}}" alt="">
+            <label for="file" class="upload-btn" >
                 <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
-            </button>
+            </label>
+            <input id="file" class="input-file" type="file" #fileInput (change)="onFileSelected($event)" ngModel name="file" style="display: none;">
         </div>
         <div class="info">
             <div class="feed-nom">
@@ -73,7 +74,7 @@
             </div>
             <div class="feed-adresse">
                 <div>Adresse :</div>
-                <input type="text" [(ngModel)]="place.address" name="adresse">
+                <input type="text" [(ngModel)]="place.address" name="address">
             </div>
         </div>
     </div>

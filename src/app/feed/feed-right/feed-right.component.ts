@@ -37,7 +37,6 @@ export class FeedRightComponent implements OnInit {
       this.friends = data.friends;
       console.log(this.friends);
       this.activeUser = data.userName;
-      console.log(this.friends);
     })
   }
   
