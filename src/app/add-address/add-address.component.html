@@ -17,18 +17,27 @@
                     </div>
                     <div class="content">
                         <div class="info-content-title">TYPE</div>
-                        <input type="text" ngModel name="type" required>
+                        <select id="dropdown" name="selectedType" ngModel required>
+                            <option *ngFor="let type of types" [value]="type.name">{{ type.name }}</option>
+                        </select>
                     </div>
                     <div class="content">
-                        <div class="info-content-title">ADRESSE</div>
-                        <input type="text" ngModel name="address" required>
+                        <div class="info-content-title">ADRESSE (Ville)</div>
+                        <div class="address-dropdown-wrap">
+                            <input (keyup)="onInputAdress($event)" list="address-dropdown" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off">
+                            <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
+                                <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
+                            </ul>
+                        </div>
+                        <!-- <datalist id="address-dropdown">
+                            <option *ngFor="let adress of adresses" [value]="adress.name">{{ adress.name }}</option>
+                        </datalist> -->
                     </div>
                     <div class="content">
                         <div class="info-content-title">PHOTO</div>
                         <label for="file" class="label-file-container">
                             <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
                             <span class="label-file">Choisir une image</span>
-                            <!-- <label for=""  class="label-file">Choisir une image</label> -->
                         </label>
                         <input id="file" class="input-file" type="file" (change)="onFileSelected($event)" ngModel name="file">
                     </div>

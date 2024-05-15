@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, tap } from 'rxjs';
+import { map, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -10,6 +10,17 @@ export class FeedService {
 
   private places = [];
   placeSubject = new Subject<any>();
+  friendSubject = new Subject<any>();
+  types = [
+    {name: "Italien", checkboxFilled: false},
+    {name: "Japonais", checkboxFilled: false},
+    {name: "Coréen", checkboxFilled: false},
+    {name: "Libanais", checkboxFilled: false},
+    {name: "Français", checkboxFilled: false},
+    {name: "Brunch", checkboxFilled: false},
+    {name: "Bar", checkboxFilled: false},
+    {name: "Autre", checkboxFilled: false},
+  ];
 
   constructor(private http: HttpClient) { } 
 
@@ -20,11 +31,33 @@ export class FeedService {
       }));
   }
 
-  getRecipe(){
-    return this.places.slice();
+  fetchAllFriends(){
+    return this.http.get<any>(environment.apiUrl + '/friends').pipe(
+      map(data => {
+        data.friends.sort((a:any, b:any) => a.name.localeCompare(b.name));
+        return data
+      })
+    );
   }
 
-  fetchAllFriend(){
-    return this.http.get<any>(environment.apiUrl + '/friends');
+  getTypes(){
+    return this.types.slice();
+  }
+
+  fetchAllAddresses(){
+     return this.http.get<any>(environment.apiUrl + '/addresses').pipe(
+      map(data => {
+      data.addresses.sort((a:any, b:any) => a.name.localeCompare(b.name));
+      return data.addresses.map((ele:any) => {
+        return {name: ele.name, checkboxFilled: ele.checkboxFilled }
+      })
+    }));
+  }
+
+
+  addAdresses(nameAddress: string){
+    return this.http.post(environment.apiUrl + '/addresses/add', {
+      name: nameAddress
+    })
   }
 }

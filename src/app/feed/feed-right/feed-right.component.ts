@@ -33,7 +33,7 @@ export class FeedRightComponent implements OnInit {
               private authService: AuthentificationService){}
 
   ngOnInit(): void {
-    this.sub = this.feedService.fetchAllFriend().subscribe(data => {
+    this.sub = this.feedService.fetchAllFriends().subscribe(data => {
       this.friends = data.friends;
       console.log(this.friends);
       this.activeUser = data.userName;

@@ -10,7 +10,7 @@
             <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
         </div>
     </div>
-    <div class="list-friends">
+    <div [ngClass]="{'list-type':true, 'list-type-scroll':friends.length>5}">
         <button *ngFor="let friend of friends" class="one-friend" (click)="filterByName(friend)">
             <div [ngClass]="{'checkbox':true, 'checkbox-click':friend.checkboxFilled!== false}">
                 <img *ngIf="friend.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
@@ -26,27 +26,13 @@
             <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
         </div>
     </div>
-    <div class="list-type">
-        <div class="one-type">
-            <div class="checkbox"></div>
-            <div>Libanais</div>
-        </div>
-        <div class="one-type">
-            <div class="checkbox"></div>
-            <div>Japonais</div>
-        </div>
-        <div class="one-type">
-            <div class="checkbox"></div>
-            <div>Italien</div>
-        </div>
-        <div class="one-type">
-            <div class="checkbox"></div>
-            <div>Oriental</div>
-        </div>
-        <div class="one-type">
-            <div class="checkbox"></div>
-            <div>Coréen</div>
-        </div>
+    <div [ngClass]="{'list-type':true, 'list-type-scroll':types.length>5}">
+        <button *ngFor="let type of types" class="one-friend" (click)="filterByType(type)">
+            <div [ngClass]="{'checkbox':true, 'checkbox-click':type.checkboxFilled!== false}">
+                <img *ngIf="type.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+            </div>  
+            <div class="div-name-friend">{{ type.name }}</div>
+        </button>
     </div>
 </div>
 <div class="filter-type-adresse">
@@ -56,26 +42,12 @@
             <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
         </div>
     </div>
-    <div class="list-adresse">
-        <div class="one-adresse">
-            <div class="checkbox"></div>
-            <div>75</div>
-        </div>
-        <div class="one-adresse">
-            <div class="checkbox"></div>
-            <div>92</div>
-        </div>
-        <div class="one-adresse">
-            <div class="checkbox"></div>
-            <div>93</div>
-        </div>
-        <div class="one-adresse">
-            <div class="checkbox"></div>
-            <div>94</div>
-        </div>
-        <div class="one-adresse">
-            <div class="checkbox"></div>
-            <div>78</div>
-        </div>
+    <div [ngClass]="{'list-type':true, 'list-adresse-scroll':addresses.length>5}">        
+        <button *ngFor="let address of  addresses" class="one-friend" (click)="filterByAddress(address)">
+            <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
+                <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+            </div>  
+            <div class="div-name-friend">{{ address.name }}</div>
+        </button>
     </div>
 </div>

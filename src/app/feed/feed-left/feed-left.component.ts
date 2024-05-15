@@ -12,6 +12,8 @@ import { HttpParams } from '@angular/common/http';
 export class FeedLeftComponent {
   sub: Subscription = new Subscription();
   friends:any[] = [];
+  types:any[] = [];
+  addresses:any[] = [];
   activeUser: string = "";
   filterParams: string = "";
   queryParams = new HttpParams();
@@ -19,15 +21,24 @@ export class FeedLeftComponent {
   constructor(private feedService: FeedService){}
 
   ngOnInit(): void {
-    this.sub = this.feedService.fetchAllFriend().subscribe(data => {
+    this.sub = this.feedService.fetchAllFriends().subscribe(data => {
       console.log(data)
       this.friends = data.friends;
       this.friends.forEach(element => {
         element['checkboxFilled'] = false;
       });
-      this.friends.push({'_id': data.userId, 'name': "Moi", 'checkboxFilled': false})
+      this.friends.push({'_id': data.userId, 'name': data.userName, 'checkboxFilled': false});
+      this.types = this.feedService.getTypes();
+      this.feedService.fetchAllAddresses().subscribe((data) => {
+        this.addresses = data;
+      });
       console.log(this.friends);
       this.activeUser = data.userName;
+      console.log(this.friends.length);
+    })
+
+    this.feedService.friendSubject.subscribe((id) => {
+      this.friends = this.friends.filter(ele => ele._id != id);
     })
   }
 
@@ -41,17 +52,27 @@ export class FeedLeftComponent {
       const currentValue = this.queryParams.getAll('nameID');
       if (currentValue) {
         const updatedValue = currentValue.filter(value => value !== friend._id);
-        if (updatedValue) {
-          this.queryParams = this.queryParams.set('nameID', updatedValue.join(','));
+        if (updatedValue.length !== 0) {
+          this.queryParams = this.queryParams.delete('nameID');
+          updatedValue.forEach(element => {
+            this.queryParams = this.queryParams.append('nameID', element);
+          });
         }
         else {
           this.queryParams = new HttpParams();
         }
       }
     }
-    console.log(this.queryParams);
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
       this.feedService.placeSubject.next(data)
     })
   }
+
+  filterByType(type: {name: string, checkboxFilled: boolean}){
+    type.checkboxFilled = type.checkboxFilled === false ? true : false;
+  }
+  filterByAddress(address: {name: string, checkboxFilled: boolean}){
+    address.checkboxFilled = address.checkboxFilled === false ? true : false;
+  }
+
 }

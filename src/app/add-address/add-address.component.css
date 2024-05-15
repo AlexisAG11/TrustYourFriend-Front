@@ -48,18 +48,19 @@
 .content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px;    
 }
 
-input {
-    width: 300px;
-    height: 20px;
+input, select {
+    width: 310px;
+    height: 30px;
     border-radius: 5px;
     border: none;
     padding: 5px ;
     font-family: inherit;
-
+    box-sizing: border-box;
 }
+
 textarea {
     width: 300px;
     height: 70px;
@@ -181,4 +182,50 @@ input.ng-invalid.ng-touched {
 
 .goback-img {
     width: 30px;
+}
+
+select, option {
+    cursor: pointer;
+}
+
+.address-dropdown-wrap {
+
+}
+
+.address-list {
+
+}
+
+ul {
+ width: 310px;
+ max-height: 200px;
+ overflow-y: auto;
+ padding: 0;
+ background-color: rgb(255, 255, 255);
+ margin: 0;
+}
+
+ul li {
+    list-style: none;
+    border: 1px solid rgb(216, 216, 216);
+    border-top: unset;
+}
+
+ul li button{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 7.5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: 0.2s;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.2s background-color;
+}
+
+ul li button:hover {
+    background-color: lightgray;
 }

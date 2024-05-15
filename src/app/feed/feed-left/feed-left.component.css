@@ -57,6 +57,12 @@
     flex-direction: column;
     gap: 10px;
 }
+.list-friends-scroll,
+.list-type-scroll,
+.list-adresse-scroll {
+    height: 140px; /* set a fixed height for the div */
+    overflow-y: scroll; /* enable vertical scrollbar */
+}
 
 .checkbox {
     width: 20px;
@@ -85,9 +91,6 @@
 .one-friend:hover .div-name-friend{
     color: rgb(150, 150, 150);
 }
-/* .div-name-friend-hover{
-    background-color: gray;
-} */
 
 
 .one-friend,
