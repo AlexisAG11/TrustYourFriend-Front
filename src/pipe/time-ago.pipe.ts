@@ -25,8 +25,6 @@ export class TimeAgoPipe implements PipeTransform {
         return `${minutes}m`;
     }
     return `${secondes}s`;
-
-    // console.log(Math.floor(difference / (1000 * 60 *60)));
   }
 
 }

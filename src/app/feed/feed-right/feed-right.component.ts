@@ -35,7 +35,6 @@ export class FeedRightComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.feedService.fetchAllFriends().subscribe(data => {
       this.friends = data.friends;
-      console.log(this.friends);
       this.activeUser = data.userName;
     })
   }

@@ -44,7 +44,6 @@ export class AuthentificationComponent implements OnDestroy {
     if (this.isConnexion) {
       this.authObs = this.authService.login(email, password).subscribe(data => {
           this.isLoading = false;
-          console.log(data);
           this.authService.setLocalStorage(data.token);
           this.router.navigate(['/feed']);
         }, errorMessage => {
@@ -59,7 +58,6 @@ export class AuthentificationComponent implements OnDestroy {
         const name = form.value.groupName.name;
         this.authObs = this.authService.register(name, email, password).subscribe(data => {
         this.isLoading = false;
-        console.log(data);
         this.authService.setLocalStorage(data.token);
         this.router.navigate(['/feed']);
       }, errorMessage => {

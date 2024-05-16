@@ -22,20 +22,19 @@ export class FeedLeftComponent {
 
   ngOnInit(): void {
     this.sub = this.feedService.fetchAllFriends().subscribe(data => {
-      console.log(data)
       this.friends = data.friends;
       this.friends.forEach(element => {
         element['checkboxFilled'] = false;
       });
       this.friends.push({'_id': data.userId, 'name': data.userName, 'checkboxFilled': false});
-      this.types = this.feedService.getTypes();
-      this.feedService.fetchAllAddresses().subscribe((data) => {
-        this.addresses = data;
-      });
-      console.log(this.friends);
       this.activeUser = data.userName;
-      console.log(this.friends.length);
     })
+    this.feedService.fetchAllTypes().subscribe((data) => {
+      this.types = data;
+    });
+    this.feedService.fetchAllAddresses().subscribe((data) => {
+      this.addresses = data;
+    });
 
     this.feedService.friendSubject.subscribe((id) => {
       this.friends = this.friends.filter(ele => ele._id != id);
@@ -44,23 +43,20 @@ export class FeedLeftComponent {
 
   filterByName(friend: {_id: string, name: string, checkboxFilled: boolean}){
     friend.checkboxFilled = friend.checkboxFilled === false ? true : false;
-    console.log(friend);
     if (friend.checkboxFilled) {
       this.queryParams = this.queryParams.append('nameID', friend._id);
     }
     else {
+      // unfilter one element
       const currentValue = this.queryParams.getAll('nameID');
       if (currentValue) {
+        // updatedValue that take account the unselection of one element
         const updatedValue = currentValue.filter(value => value !== friend._id);
-        if (updatedValue.length !== 0) {
+          // delete queryparams then recreate one on the updated element
           this.queryParams = this.queryParams.delete('nameID');
           updatedValue.forEach(element => {
             this.queryParams = this.queryParams.append('nameID', element);
-          });
-        }
-        else {
-          this.queryParams = new HttpParams();
-        }
+          });      
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
@@ -70,9 +66,42 @@ export class FeedLeftComponent {
 
   filterByType(type: {name: string, checkboxFilled: boolean}){
     type.checkboxFilled = type.checkboxFilled === false ? true : false;
+    if (type.checkboxFilled) {
+      this.queryParams = this.queryParams.append('typeID', type.name);
+    }
+    else {
+      const currentValue = this.queryParams.getAll('typeID');
+      if (currentValue) {
+        const updatedValue = currentValue.filter(value => value !== type.name);
+        this.queryParams = this.queryParams.delete('typeID');
+        updatedValue.forEach(element => {
+          this.queryParams = this.queryParams.append('typeID', element);
+        });
+      }
+    }
+    this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
+      this.feedService.placeSubject.next(data)
+    })
   }
+  
   filterByAddress(address: {name: string, checkboxFilled: boolean}){
     address.checkboxFilled = address.checkboxFilled === false ? true : false;
+    if (address.checkboxFilled) {
+      this.queryParams = this.queryParams.append('addressID', address.name);
+    }
+    else {
+      const currentValue = this.queryParams.getAll('addressID');
+      if (currentValue) {
+        const updatedValue = currentValue.filter(value => value !== address.name);
+        this.queryParams = this.queryParams.delete('addressID');
+        updatedValue.forEach(element => {
+          this.queryParams = this.queryParams.append('addressID', element);
+        });
+      }
+    }
+    this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
+      this.feedService.placeSubject.next(data)
+    })
   }
 
 }

@@ -17,14 +17,17 @@
                     </div>
                     <div class="content">
                         <div class="info-content-title">TYPE</div>
-                        <select id="dropdown" name="selectedType" ngModel required>
-                            <option *ngFor="let type of types" [value]="type.name">{{ type.name }}</option>
-                        </select>
+                        <div class="type-dropdown-wrap" #containerInputDropdownType>
+                            <input (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
+                            <ul *ngIf="filteredType.length !== 0" class="type-list">
+                                <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="content">
                         <div class="info-content-title">ADRESSE (Ville)</div>
-                        <div class="address-dropdown-wrap">
-                            <input (keyup)="onInputAdress($event)" list="address-dropdown" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off">
+                        <div class="address-dropdown-wrap" #containerInputDropdown>
+                            <input (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off">
                             <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
                                 <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
                             </ul>
