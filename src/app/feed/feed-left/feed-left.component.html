@@ -7,7 +7,7 @@
     <div class="friend-container">
         <div class="friend-text">Amis</div>
         <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
+            <img class="bottom-arrow" src="../../assets/images/friends-icon.svg" alt="">
         </div>
     </div>
     <div [ngClass]="{'list-type':true, 'list-type-scroll':friends.length>5}">
@@ -23,11 +23,11 @@
     <div class="type-container">
         <div class="type-text">Type</div>
         <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
+            <img class="bottom-arrow" src="../../assets/images/fork-and-knife-meal-svgrepo-com.svg" alt="">
         </div>
     </div>
     <div [ngClass]="{'list-type':true, 'list-type-scroll':types.length>5}">
-        <button *ngFor="let type of types" class="one-friend" (click)="filterByType(type)">
+        <button *ngFor="let type of types" class="one-type" (click)="filterByType(type)">
             <div [ngClass]="{'checkbox':true, 'checkbox-click':type.checkboxFilled!== false}">
                 <img *ngIf="type.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
             </div>  
@@ -39,11 +39,11 @@
     <div class="adresse-container">
         <div class="adresse-text">Adresse</div>
         <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/up-arrow-svgrepo-com.svg" alt="">
+            <img class="bottom-arrow" src="../../assets/images/location-sign-svgrepo-com.svg" alt="">
         </div>
     </div>
     <div [ngClass]="{'list-type':true, 'list-adresse-scroll':addresses.length>5}">        
-        <button *ngFor="let address of  addresses" class="one-friend" (click)="filterByAddress(address)">
+        <button *ngFor="let address of  addresses" class="one-adresse" (click)="filterByAddress(address)">
             <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
                 <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
             </div>  

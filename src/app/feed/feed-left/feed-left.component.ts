@@ -17,28 +17,25 @@ export class FeedLeftComponent {
   activeUser: string = "";
   filterParams: string = "";
   queryParams = new HttpParams();
-  
+
   constructor(private feedService: FeedService){}
 
   ngOnInit(): void {
-    this.sub = this.feedService.fetchAllFriends().subscribe(data => {
+    this.feedService.fetchAllFriends().subscribe(data => {
       this.friends = data.friends;
-      this.friends.forEach(element => {
-        element['checkboxFilled'] = false;
-      });
-      this.friends.push({'_id': data.userId, 'name': data.userName, 'checkboxFilled': false});
-      this.activeUser = data.userName;
-    })
+    });
+
     this.feedService.fetchAllTypes().subscribe((data) => {
       this.types = data;
     });
+
     this.feedService.fetchAllAddresses().subscribe((data) => {
       this.addresses = data;
     });
 
     this.feedService.friendSubject.subscribe((id) => {
       this.friends = this.friends.filter(ele => ele._id != id);
-    })
+    });
   }
 
   filterByName(friend: {_id: string, name: string, checkboxFilled: boolean}){
@@ -60,7 +57,7 @@ export class FeedLeftComponent {
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
-      this.feedService.placeSubject.next(data)
+      this.feedService.placeSubject.next(data) // reload the place in the center
     })
   }
 
@@ -80,7 +77,7 @@ export class FeedLeftComponent {
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
-      this.feedService.placeSubject.next(data)
+      this.feedService.placeSubject.next(data);
     })
   }
   

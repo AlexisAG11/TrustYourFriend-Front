@@ -23,6 +23,11 @@ export class FeedService {
   fetchAllFriends(){
     return this.http.get<any>(environment.apiUrl + '/friends').pipe(
       map(data => {
+        data.friends.push({'_id': data.userId, 'name': data.userName})
+        let dataMaj = data.friends.map((ele:any) => {  
+          return { _id: ele._id ,name: ele.name, checkboxFilled: false}
+        })
+        data.friends = [...dataMaj];
         data.friends.sort((a:any, b:any) => a.name.localeCompare(b.name));
         return data
       })
@@ -32,20 +37,26 @@ export class FeedService {
   fetchAllAddresses(){
      return this.http.get<any>(environment.apiUrl + '/addresses').pipe(
       map(data => {
-      data.addresses.sort((a:any, b:any) => a.name.localeCompare(b.name));
-      return data.addresses.map((ele:any) => {
-        return {name: ele.name, checkboxFilled: ele.checkboxFilled }
-      })
+        let dataMaj = data.addresses.map((ele:any) => {  
+          return { ...ele, checkboxFilled: false, disabled: false}
+        })
+        dataMaj.sort((a:any, b:any) => a.name.localeCompare(b.name));
+        return dataMaj.map((ele:any) => {
+          return {name: ele.name, checkboxFilled: ele.checkboxFilled }
+        })
     }));
   }
   fetchAllTypes(){
-     return this.http.get<any>(environment.apiUrl + '/types').pipe(
+    return this.http.get<any>(environment.apiUrl + '/types').pipe(
       map(data => {
-      data.types.sort((a:any, b:any) => a.name.localeCompare(b.name));
-      return data.types.map((ele:any) => {
-        return {name: ele.name, checkboxFilled: ele.checkboxFilled }
-      })
-    }));
+        let dataMaj = data.types.map((ele:any) => {  
+          return { ...ele, checkboxFilled: false, disabled: false}
+        })
+        dataMaj.sort((a:any, b:any) => a.name.localeCompare(b.name));
+        return dataMaj.map((ele:any) => {
+          return {name: ele.name, checkboxFilled: ele.checkboxFilled}
+        })
+      }));
   }
 
 

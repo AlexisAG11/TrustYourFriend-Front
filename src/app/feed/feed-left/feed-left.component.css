@@ -48,6 +48,7 @@
 
 .bottom-arrow {
     width: 20px;
+    opacity: 0.9;
 }
 
 .list-friends,
@@ -125,3 +126,9 @@
 .filter-type-adresse {
     border-bottom: none;
 }
+
+.one-friend:disabled,
+.one-type:disabled,
+.one-adresse:disabled {
+    pointer-events: none;
+  }
