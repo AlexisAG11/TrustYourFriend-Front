@@ -19,7 +19,7 @@ export class AddFriendsComponent {
 
   onSubmitFriends(form: NgForm){
     const email = form.value.email;
-    this.http.patch(environment.apiUrl + '/friends/add', 
+    this.http.patch(environment.apiUrl + '/friends/request', 
       {
         friendEmail: email
       }

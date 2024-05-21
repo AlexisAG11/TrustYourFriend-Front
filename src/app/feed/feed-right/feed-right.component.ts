@@ -26,7 +26,10 @@ export class FeedRightComponent implements OnInit {
 
   sub: Subscription = new Subscription();
   friends = [];
+  sentFriendRequests = [];
+  receivedFriendRequests = [];
   activeUser: string = "";
+  isFriendList = true;
 
   constructor(private feedService: FeedService,
               private router: Router,
@@ -34,8 +37,14 @@ export class FeedRightComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.feedService.fetchAllFriends().subscribe(data => {
-      this.friends = data.friends;
+      const dataCopy = {...data};
+      // remove the activeUser from the friends list
+      this.friends = dataCopy.friends.filter((ele:any)=> ele._id !== data.userId);
+      this.sentFriendRequests = dataCopy.sentFriendRequests;
+      this.receivedFriendRequests = dataCopy.receivedFriendRequests;
       this.activeUser = data.userName;
+      console.log(this.sentFriendRequests);
+      console.log(this.receivedFriendRequests);
     })
   }
   

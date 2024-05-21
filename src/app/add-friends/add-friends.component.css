@@ -53,13 +53,17 @@ input {
     padding: 5px ;
     font-size: 18px;
 }
+input:focus {
+    outline: none;
+    border: 2px solid #0fc1d8
+}
 
 .img-ajouter-adresse {
     object-fit: cover;
     width: 40%;
 }
 .friend-logo {
-    background-color: rgb(230, 230, 230);
+    background-color: #0fc1d8;
     opacity: 0.8;
     display: flex;
     justify-content: center;   
@@ -72,7 +76,7 @@ input {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; 
 }
 .goback-logo {
-    background-color: rgb(230, 230, 230);
+    background-color: #0fc1d8;
     opacity: 0.8;
     display: flex;
     justify-content: center;   
@@ -87,6 +91,11 @@ input {
     left: 13px;
     top: 13px;
     cursor: pointer;
+    transition: 0.2s background-color;
+}
+
+.goback-logo:hover {
+    background-color: #00b1ca;
 }
 
 .friend-img {

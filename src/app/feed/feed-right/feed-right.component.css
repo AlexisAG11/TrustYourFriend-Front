@@ -32,7 +32,7 @@
     padding-bottom: 20px;
     padding-left: 5px;
     margin-left:20px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     background-color: rgb(245, 245, 245);
     /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;     */
 }
@@ -129,4 +129,108 @@
     height: 10px;
     border: 2px solid #f5f5f5;
     border-radius: 50%;
+}
+
+.friend {
+    display: flex;
+    flex-direction: row;    
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.pp {
+    border: 2px solid rgb(143, 143, 143);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.delete-friend-container {
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    right: 10px;
+}
+.delete-friend-container:hover {
+    background-color: rgb(166, 166, 166);
+}
+.delete-friend {
+    width: 19px;
+    padding: 2px;
+}
+
+.group-list {
+    margin-left: 20px;
+    background-color: rgb(220, 220, 220);
+    position: relative;
+    display: flex;
+    height: 35px;
+    border-radius: 10px 10px 0 0;
+}
+
+.btn-slider {
+    background-color: rgb(241, 241, 241);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(var(--width-list-friend)/2 - 2px);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 8px 0 0 0;
+    transition: .5s;
+}
+
+.btn-slider-slide {
+    left: calc(var(--width-list-friend)/2);
+    border-radius: 0 8px 0 0;
+
+}
+
+.log-button {
+    flex: 1;
+    border-width: 0;
+    border-radius: 8px;
+    z-index: 10;
+    background-color:transparent;
+    cursor: pointer;
+    transition: color 0.5s;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 0;
+}
+
+.desac-btn {
+    color: gray;
+}
+
+.notification-count {
+    position: absolute;
+    top: -2px;
+    right: -5px;
+    background-color: rgb(243, 28, 28);
+    color: white;
+    font-family: inherit;
+    font-size: 11px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 50%;
+    opacity: 1;
+    transition: 0.2s opacity;
+}
+.notification-count-on {
+    opacity: 0.5;
 }

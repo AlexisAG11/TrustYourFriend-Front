@@ -47,22 +47,22 @@ p {
 }
 .group-login {
     margin-bottom: 40px;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    height: 56px;
     background-color: rgb(220, 220, 220);
     position: relative;
+    display: flex;
 }
 
 .log-button {
     flex: 1;
     border-width: 0;
-    border-radius: 10px;
+    border-radius: 7px;
     z-index: 10;
     background-color:transparent;
     cursor: pointer;
     transition: color 0.5s;
+    font-family: inherit;
+    padding: 0;
 }
 
 .desac-btn {
@@ -77,12 +77,12 @@ p {
     bottom: 3px;
     width: calc(var(--width-group)/2 - 3px);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    border-radius: 10px;
+    border-radius: 7px;
     transition: .5s;
 }
 
 .btn-slider-slide {
-    left: calc(var(--width-group)/2 + 6px);
+    left: calc(var(--width-group)/2);
 }
 .email-icon,
 .password-icon,
