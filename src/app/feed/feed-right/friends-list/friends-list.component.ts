@@ -31,7 +31,7 @@ export class FriendsListComponent{
         if (index !== -1) {
           this.friends.splice(index, 1);
         }
-        this.feedService.friendSubject.next(id)
+        this.feedService.deleteFriendSubject.next(id);
         this.feedService.fetchAllPlaces().subscribe(data => {
           this.feedService.placeSubject.next(data)
         })

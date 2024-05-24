@@ -33,9 +33,16 @@ export class FeedLeftComponent {
       this.addresses = data;
     });
 
-    this.feedService.friendSubject.subscribe((id) => {
+    this.feedService.deleteFriendSubject.subscribe((id) => {
       this.friends = this.friends.filter(ele => ele._id != id);
     });
+
+    this.feedService.addFriendSubject.subscribe((receivedFriendRequest) => {
+      const receivedFriendRequestMaj = {...receivedFriendRequest, checkboxFilled: false}
+      console.log(receivedFriendRequestMaj)
+      this.friends.push(receivedFriendRequestMaj);
+    });
+
   }
 
   filterByName(friend: {_id: string, name: string, checkboxFilled: boolean}){

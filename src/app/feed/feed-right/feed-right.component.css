@@ -65,6 +65,9 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
 }
+.button-ami:hover {
+    opacity: 0.8;
+}
 
 .userActive {
     display: flex;
@@ -152,17 +155,37 @@
     font-size: 16px;
 }
 
-.delete-friend-container {
-    background-color: rgb(201, 201, 201);
+.validation-img,.unvalidation-img {
+    width: 22px;
+}
+
+.img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2px;
+    position: absolute;
+    right: 5px;
+}
+
+.validation-btn,.unvalidation-btn {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+    resize: none;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    padding: 3px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: absolute;
-    right: 10px;
+    transition: opacity 0.3s;
+
 }
+
+.validation-btn:hover, .unvalidation-btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 .delete-friend-container:hover {
     background-color: rgb(166, 166, 166);
 }

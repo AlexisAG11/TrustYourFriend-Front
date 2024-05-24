@@ -58,4 +58,33 @@ export class FeedRightComponent implements OnInit {
     this.router.navigate(['/add-friends'])
   }
 
+  onAcceptFriendRequest(requestId: string, receivedFriendRequest: never){
+    this.feedService.acceptFriendRequest(requestId).subscribe(data => {
+      // remove in the request array
+      const index = this.receivedFriendRequests.indexOf(receivedFriendRequest);
+      if (index !== -1) {
+        this.receivedFriendRequests.splice(index, 1);
+      }
+      // add in the friends array without calling backend
+      this.friends.push(receivedFriendRequest);
+      this.isFriendList = true;
+      this.feedService.addFriendSubject.next(receivedFriendRequest);
+      // refresh the place
+      this.feedService.fetchAllPlaces().subscribe(data => {
+        this.feedService.placeSubject.next(data)
+      })
+    })
+  }
+
+  onDeclineFriendRequest(requestId: string, receivedFriendRequest: never){
+    this.feedService.declineFriendRequest(requestId).subscribe(data => {
+      // remove in the request array
+      const index = this.receivedFriendRequests.indexOf(receivedFriendRequest);
+      if (index !== -1) {
+        this.receivedFriendRequests.splice(index, 1);
+      }
+      this.isFriendList = true;
+    })
+  }
+
 }

@@ -20,19 +20,24 @@
     <div class="btn-slider" [ngClass]="{'btn-slider-slide': !isFriendList}"></div>
     <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isFriendList}" (click)="isFriendList = true">Amis</button>
     <button type="button" class="log-button" [ngClass]="{'desac-btn' : isFriendList}" (click)="isFriendList = false">Demandes</button>
-    <div class="notification-count" [ngClass]="{'notification-count-on' : !isFriendList}">1</div>
+    <div *ngIf="receivedFriendRequests.length !== 0" class="notification-count" [ngClass]="{'notification-count-on' : !isFriendList}">{{receivedFriendRequests.length}}</div>
 </div>
 
 <div *ngIf="isFriendList" class="all-friends">
     <app-friends-list @fadeOut *ngFor="let friend of friends" [friend]="friend" [friends]="friends"></app-friends-list>
 </div>
 <div *ngIf="!isFriendList" class="all-friends">
-    <div @fadeOut *ngFor="let sentFriendRequest of sentFriendRequests">
+    <div @fadeOut *ngFor="let receivedFriendRequest of receivedFriendRequests">
         <div class="friend">
             <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-            <div class="name">{{sentFriendRequest['name']}}</div>
-            <div class="delete-friend-container">
-                <img class="delete-friend" src="../../assets/images/waiting-svgrepo-com.svg" alt="" >
+            <div class="name">{{receivedFriendRequest['name']}}</div>
+            <div class="img-container">
+                <button type="button" class="validation-btn" (click)="onAcceptFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                    <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+                </button>
+                <button type="button" class="unvalidation-btn" (click)="onDeclineFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                    <img class="unvalidation-img" src="../../assets/images/cross-circle-1-svgrepo-com.svg" alt="">
+                </button>
             </div>
         </div>
     </div>

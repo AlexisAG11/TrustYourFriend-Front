@@ -10,8 +10,9 @@ export class FeedService {
 
   private places = [];
   placeSubject = new Subject<any>();
-  friendSubject = new Subject<any>();
-
+  deleteFriendSubject = new Subject<any>();
+  addFriendSubject = new Subject<any>();
+  
   constructor(private http: HttpClient) { } 
 
   fetchAllPlaces(queryparams: HttpParams = new HttpParams()){
@@ -68,6 +69,20 @@ export class FeedService {
   addTypes(nameType: string){
     return this.http.post(environment.apiUrl + '/types/add', {
       name: nameType
+    })
+  }
+  
+  acceptFriendRequest(requestFriendId: string){
+    return this.http.patch(environment.apiUrl + '/friends/acceptRequest',
+    {
+      requestedFriendId: requestFriendId 
+    })
+  }
+
+  declineFriendRequest(requestFriendId: string){
+    return this.http.patch(environment.apiUrl + '/friends/declineRequest',
+    {
+      requestedFriendId: requestFriendId 
     })
   }
 }
