@@ -33,23 +33,15 @@ export class PostComponent implements OnInit{
   selectedFile:any
   urlImage: any;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private feedService: FeedService){}
 
   ngOnInit(): void {
-    this.urlImage = 'http://localhost:3000/uploads/'+ this.place.image
+    this.urlImage = 'http://localhost:3000/uploads/'+ this.place.image;
   }
 
   onDeleteAddress(name: string, id: string) {
-    if(confirm("Etes vous sûr de vouloir supprimer " + name)) {
-      this.http.delete(environment.apiUrl + '/places/' + id).subscribe( data => {
-        console.log(name + ' bien supprimer')
-        const inde = this.places.indexOf(this.place);
-        if (inde !== -1) {
-          this.places.splice(inde, 1);
-        }
-        console.log(this.places)
-      })
-    }
+    const confirmationObject = {name: name, id: id, display: true};
+    this.feedService.displayConfirmationDeletePlaceSubject.next(confirmationObject);
   }
 
   onEditAddress(){
@@ -69,7 +61,6 @@ export class PostComponent implements OnInit{
     fd.append('type', type);
     fd.append('address', address);
     fd.append('comment', comment);
-    console.log("modified");
     this.http.patch(environment.apiUrl + '/places/' + id, fd).subscribe(res => {
         this.editMode = false; 
     })
@@ -81,7 +72,6 @@ export class PostComponent implements OnInit{
 
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];
-    console.log(event)
     const files = event.target.files;
     if (files.length === 0)
         return;

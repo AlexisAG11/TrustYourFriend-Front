@@ -1,0 +1,12 @@
+<div @fadeInOut class="dialog">
+    <div class="dialog-container">
+        <div class="content-text">
+            <h1>{{message}}</h1>
+        </div>
+        <div class="btn-wrapper">
+            <button type="button" class="not-ok-button" (click)="onReject()">Annuler</button>
+            <button type="button" class="ok-button" (click)="onConfirm()">Confirmer</button>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>

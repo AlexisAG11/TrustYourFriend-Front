@@ -1,0 +1,92 @@
+.dialog {
+    position: absolute; /* Position the element absolutely */
+    top: 50%; /* Move the element 50% down from the top of the container */
+    left: 50%; /* Move the element 50% from the left of the container */
+    transform: translate(-50%, -50%); /* Translate the element back by 50% of its own width and height */
+    /* height: 280px;  */
+    width: 350px; 
+    background-color: white; /* Example background color */
+    border-radius: 10px;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+}
+
+.ok-button, .not-ok-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 90px;
+    padding-right: 90px;
+    font: inherit;
+    font-size: 18px;
+    background-color: rgb(15, 20, 25);
+    color: white;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    transition: 0.3s background-color;
+}
+.ok-button {
+    background-color: rgb(15, 20, 25);
+    color: white;
+}
+.not-ok-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(15,20,25);
+}
+.ok-button:hover {
+     background-color: rgb(47, 44, 44);
+}
+.not-ok-button:hover {
+     background-color: rgb(245, 245, 245);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    z-index: 30;
+  }
+
+.dialog-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+p {
+    margin: 0;
+    justify-content: center;
+}
+.content-text {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    
+}

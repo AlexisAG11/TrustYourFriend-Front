@@ -18,6 +18,7 @@ import { TimeAgoPipe } from 'src/pipe/time-ago.pipe';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { FriendsListComponent } from './feed/feed-right/friends-list/friends-list.component';
 import { AddFriendsComponent } from './add-friends/add-friends.component';
+import { ConfirationDialogComponent } from './confiration-dialog/confiration-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddFriendsComponent } from './add-friends/add-friends.component';
     TimeAgoPipe,
     AddAddressComponent,
     FriendsListComponent,
-    AddFriendsComponent
+    AddFriendsComponent,
+    ConfirationDialogComponent
   ],
   imports: [
     BrowserModule,

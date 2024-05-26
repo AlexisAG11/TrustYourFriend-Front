@@ -39,7 +39,6 @@ export class FeedLeftComponent {
 
     this.feedService.addFriendSubject.subscribe((receivedFriendRequest) => {
       const receivedFriendRequestMaj = {...receivedFriendRequest, checkboxFilled: false}
-      console.log(receivedFriendRequestMaj)
       this.friends.push(receivedFriendRequestMaj);
     });
 

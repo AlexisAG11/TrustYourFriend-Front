@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 180px 500px 200px;
     justify-content: center;
+    position: relative;
 }
 
 .filterbar {
@@ -9,7 +10,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 200;
+    z-index: 20;
     height: 800px;
     /* width: 180px; */
 }
@@ -18,6 +19,6 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 200;
+    z-index: 20;
     height: 800px;
 }

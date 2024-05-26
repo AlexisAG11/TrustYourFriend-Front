@@ -43,9 +43,12 @@ export class FeedRightComponent implements OnInit {
       this.sentFriendRequests = dataCopy.sentFriendRequests;
       this.receivedFriendRequests = dataCopy.receivedFriendRequests;
       this.activeUser = data.userName;
-      console.log(this.sentFriendRequests);
-      console.log(this.receivedFriendRequests);
     })
+
+    // update the friend list when the confirmation delete friend append
+    this.feedService.deleteFriendSubject.subscribe((id) => {
+      this.friends = this.friends.filter((ele:any) => ele._id != id);
+    });
   }
   
 

@@ -23,6 +23,11 @@ export class AddAddressComponent implements OnInit {
   keyInputAddress: boolean = false; // monitore when we key input on the input address
   keyInputType: boolean = false; // monitore when we key input on the input address
 
+  displayConfirmation: boolean = false;
+  addressConfirmation: string = "";
+  typeConfirmation: string = "";
+  messageDelete: string = "";
+
 
   constructor(private http: HttpClient, private router: Router, private feedService: FeedService){}
 
@@ -33,6 +38,47 @@ export class AddAddressComponent implements OnInit {
     this.feedService.fetchAllAddresses().subscribe((data) => {
       this.adresses = data;
     });
+
+    // pass data to the confirm dialog
+    this.feedService.displayConfirmationAddressSubject.subscribe((data) => {
+      this.displayConfirmation = data.display;
+      this.addressConfirmation = data.address;
+      this.messageDelete = `Ajouter adresse ${this.addressConfirmation} ?`
+    })
+
+    // result of adding the address
+    this.feedService.addAddressSubject.subscribe((data) => {
+      this.adresses = data.adresses;
+      this.filteredAddress = [];
+      this.inputAddressValue = data.inputAddressValue;
+    })
+    
+    // result of not adding the address
+    this.feedService.notAddAddressSubject.subscribe((data) => {
+        this.filteredAddress = [];
+        this.inputAddressValue = "";
+    })
+
+    // pass data to the confirm dialog
+    this.feedService.displayConfirmationTypeSubject.subscribe((data) => {
+      this.displayConfirmation = data.display;
+      this.typeConfirmation = data.type;
+      this.messageDelete = `Ajouter type ${this.typeConfirmation} ?`
+    })
+
+    // result of adding the type
+    this.feedService.addTypeSubject.subscribe((data) => {
+      this.types = data.types;
+      this.filteredType = [];
+      this.inputTypeValue = data.inputTypeValue;
+    })
+    
+    // result of not adding the type
+    this.feedService.notAddTypeSubject.subscribe((data) => {
+        this.filteredType = [];
+        this.inputTypeValue = "";
+    })
+    
 
   }
 
@@ -105,19 +151,8 @@ export class AddAddressComponent implements OnInit {
     this.keyInputAddress = false
     if (adress.includes("ajouter ville")) {
       const adressRaw = adress.replace(' (ajouter ville)','');
-      if (confirm("Etes vous sûr de vouloir ajouter la ville : " + adressRaw)) {
-        this.feedService.addAdresses(adressRaw).subscribe(data1 => {
-          this.feedService.fetchAllAddresses().subscribe((data2) => {
-            this.adresses = data2;
-            this.filteredAddress = [];
-            this.inputAddressValue = adressRaw;
-            console.log(adressRaw + ' bien ajoutée');
-          });
-        })
-      } else {
-        this.filteredAddress = [];
-        this.inputAddressValue = "";
-      }
+      const confirmationObject = {address: adressRaw, display: true};
+      this.feedService.displayConfirmationAddressSubject.next(confirmationObject);
     }
     else {
       this.filteredAddress = [];
@@ -129,19 +164,8 @@ export class AddAddressComponent implements OnInit {
     this.keyInputType = false
     if (type.includes("ajouter type")) {
       const typeRaw = type.replace(' (ajouter type)','');
-      if (confirm("Etes vous sûr de vouloir ajouter le type : " + typeRaw)) {
-        this.feedService.addTypes(typeRaw).subscribe(data1 => {
-          this.feedService.fetchAllTypes().subscribe((data2) => {
-            this.types = data2;
-            this.filteredType = [];
-            this.inputTypeValue = typeRaw;
-            console.log(typeRaw + ' bien ajoutée');
-          });
-        })
-      } else {
-        this.filteredType = [];
-        this.inputTypeValue = "";
-      }
+      const confirmationObject = {type: typeRaw, display: true};
+      this.feedService.displayConfirmationTypeSubject.next(confirmationObject);
     }
     else {
       this.filteredType = [];

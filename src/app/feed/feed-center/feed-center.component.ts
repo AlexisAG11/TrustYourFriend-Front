@@ -38,6 +38,10 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
       this.places = data.places;
     })
 
+    this.feedService.deletePlaceSubject.subscribe((id) => {
+      this.places = this.places.filter((ele:any) => ele._id != id);
+    })
+
   }
 
 

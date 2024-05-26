@@ -12,6 +12,15 @@ export class FeedService {
   placeSubject = new Subject<any>();
   deleteFriendSubject = new Subject<any>();
   addFriendSubject = new Subject<any>();
+  displayConfirmationFriendSubject = new Subject<any>();
+  displayConfirmationAddressSubject = new Subject<any>();
+  displayConfirmationTypeSubject = new Subject<any>();
+  displayConfirmationDeletePlaceSubject = new Subject<any>();
+  addAddressSubject = new Subject<any>();
+  notAddAddressSubject = new Subject<any>();
+  addTypeSubject = new Subject<any>();
+  notAddTypeSubject = new Subject<any>();
+  deletePlaceSubject = new Subject<any>();
   
   constructor(private http: HttpClient) { } 
 
