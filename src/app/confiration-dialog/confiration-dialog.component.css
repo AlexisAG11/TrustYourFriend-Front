@@ -1,5 +1,5 @@
 .dialog {
-    position: absolute; /* Position the element absolutely */
+    position: fixed; /* Position the element absolutely */
     top: 50%; /* Move the element 50% down from the top of the container */
     left: 50%; /* Move the element 50% from the left of the container */
     transform: translate(-50%, -50%); /* Translate the element back by 50% of its own width and height */

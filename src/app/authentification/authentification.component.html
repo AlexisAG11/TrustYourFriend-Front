@@ -10,18 +10,19 @@
                 <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isConnexion}" (click)="connexion(authForm)">Se connecter</button>
                 <button type="button" class="log-button" [ngClass]="{'desac-btn' : isConnexion}" (click)="inscription(authForm)">S'inscrire</button>
             </div>
-            <div *ngIf="!isConnexion" class="group-name" ngModelGroup="groupName">
+            <div *ngIf="!isConnexion" [ngClass]="{'group-name':true, 'group-name-focus': isInputNameFocused}" ngModelGroup="groupName">
                 <img class="name-icon" src="../../assets/images/user-icon-svgrepo-com.svg" alt="">
-                <input class="name-text" type="text" ngModel name="name" required>
+                <input class="name-text" type="text" ngModel name="name" required placeholder="Lucile" (focus)="onFocus('name')" (blur)="onBlur('name')">
             </div>
-            <div class="group-email" ngModelGroup="groupEmail" [class.error-connect]="isError">
+            <div [ngClass]="{'group-email':true, 'group-email-focus': isInputEmailFocused, 'error-connect': isError}" ngModelGroup="groupEmail">
                 <img class="email-icon" src="../../assets/images/email-svgrepo-com.svg" alt="">
-                <input class="email-text" type="text" ngModel name="email" required email>
+                <input class="email-text" type="text" ngModel name="email" required email placeholder="Lucile1234@gmail.com" (focus)="onFocus('email')" (blur)="onBlur('email')">
             </div>
-            <div class="group-password" ngModelGroup="groupPassword" [class.error-connect]="isError">
+            <div [ngClass]="{'group-password':true, 'group-password-focus': isInputPasswordFocused, 'error-connect': isError}" ngModelGroup="groupPassword">
                 <img class="password-icon" src="../../assets/images/password-svgrepo-com.svg" alt="">
-                <input class="password-text" type="password" ngModel name="password"
-                required>
+                <input class="password-text" [type]="showPassword ? 'text' : 'password'" ngModel name="password"
+                required placeholder="Mot de passe" (focus)="onFocus('password')" (blur)="onBlur('password')">
+                <img class="view-password-icon" [src]="showPassword ? '../../assets/images/eye-open-svgrepo-com.svg' : '../../assets/images/eye-slash-svgrepo-com.svg'" alt="" (click)="togglePasswordVisibility()">
             </div>
             <div *ngIf="isError" style="
                 color: red;

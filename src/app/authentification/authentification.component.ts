@@ -16,6 +16,11 @@ export class AuthentificationComponent implements OnDestroy {
   errorMess = '';
   isLoading = false;
   authObs: Subscription = new Subscription();
+  showPassword: boolean = false;
+  isInputPasswordFocused: boolean = false;
+  isInputNameFocused: boolean = false;
+  isInputEmailFocused: boolean = false;
+  
 
 
   constructor(
@@ -71,6 +76,33 @@ export class AuthentificationComponent implements OnDestroy {
     }
     
   }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  onFocus(info: string) {
+    if (info === "password") {
+      this.isInputPasswordFocused = true;
+    }
+    if (info === "name") {
+      this.isInputNameFocused = true;
+    }
+    if (info === "email") {
+      this.isInputEmailFocused = true;
+    }
+  }
+
+  onBlur(info: string) {
+    if (info === "password") {
+      this.isInputPasswordFocused = false;
+    }
+    if (info === "name") {
+      this.isInputNameFocused = false;
+    }
+    if (info === "email") {
+      this.isInputEmailFocused = false;
+    }  }
   
   ngOnDestroy(): void {
     this.authObs.unsubscribe();

@@ -131,6 +131,13 @@ button {
     border: 1px solid red;
 }
 
+.group-password-focus,
+.group-email-focus,
+.group-name-focus
+ {
+    border: 1px solid black;
+}
+
 .error-toast {
     background-color: rgb(179, 0, 0);
     padding: 5px;
@@ -155,6 +162,19 @@ button {
     animation: rotation 1s linear infinite;
     }
 
+    input::placeholder {
+        color: rgb(185, 185, 185);
+    }
+    input:focus {
+        outline: none;    
+    }
+
+    .view-password-icon {
+        width: 17px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
     @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -162,4 +182,5 @@ button {
     100% {
         transform: rotate(360deg);
     }
+
 } 

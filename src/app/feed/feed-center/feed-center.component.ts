@@ -30,12 +30,13 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.feedService.fetchAllPlaces().subscribe(data => {
-      this.places = data.places;
+      this.places = data.modifiedPlaces;
+      console.log(this.places);
       this.idUser = data.user;
     })
 
     this.sub2 = this.feedService.placeSubject.subscribe( data => {
-      this.places = data.places;
+      this.places = data.modifiedPlaces;
     })
 
     this.feedService.deletePlaceSubject.subscribe((id) => {

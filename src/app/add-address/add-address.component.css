@@ -230,6 +230,7 @@ ul li {
     list-style: none;
     border: 1px solid rgb(216, 216, 216);
     border-top: unset;
+    border:none
 }
 
 ul li button{

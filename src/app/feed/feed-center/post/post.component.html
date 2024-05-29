@@ -66,15 +66,26 @@
         <div class="info">
             <div class="feed-nom">
                 <div>Nom :</div>
-                <input type="text" [(ngModel)]="place.name" name="name">
+                <input class="input-name" type="text" [(ngModel)]="place.name" name="name">
             </div>
             <div class="feed-type">
                 <div>Type :</div>
-                <input type="text" [(ngModel)]="place.type" name="type">
+                <!-- <input type="text" [(ngModel)]="place.type" name="type"> -->
+                <div class="type-dropdown-wrap" #containerInputDropdownType>
+                    <input class="input-type" (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="place.type" name="type" required autocomplete="off">
+                    <ul *ngIf="filteredType.length !== 0" class="type-list">
+                        <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
+                    </ul>
+                </div>
             </div>
             <div class="feed-adresse">
                 <div>Adresse :</div>
-                <input type="text" [(ngModel)]="place.address" name="address">
+                <div class="address-dropdown-wrap" #containerInputDropdown>
+                    <input class="input-adress" (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="place.address" name="address" required autocomplete="off">
+                    <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
+                        <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +93,7 @@
         <textarea class="textarea-style" [(ngModel)]="place.comment" name="comment"></textarea>
     </div>
     <div class="img-container">
-        <button type="submit" class="validation-btn">
+        <button type="submit" [disabled]="editPost.invalid" [ngClass]="{'validation-btn':true, 'validation-btn-valid':editPost.valid}">
             <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
         </button>
         <button type="button" class="unvalidation-btn" (click)="onUnvalidation()">

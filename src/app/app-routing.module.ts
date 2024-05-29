@@ -9,10 +9,10 @@ import { AddFriendsComponent } from './add-friends/add-friends.component';
 const routes: Routes = [
   { path: '', redirectTo: "/auth", pathMatch:"full"},
   { path: 'auth', component: AuthentificationComponent},
-  // { path: 'feed', component: FeedComponent, canActivate: [AuthentificationGuard]},
-  { path: 'feed', component: FeedComponent},
-  { path: 'add-address', component: AddAddressComponent},
-  { path: 'add-friends', component: AddFriendsComponent},
+  { path: 'feed', component: FeedComponent, canActivate: [AuthentificationGuard]},
+  { path: 'add-address', component: AddAddressComponent, canActivate: [AuthentificationGuard]},
+  { path: 'add-friends', component: AddFriendsComponent, canActivate: [AuthentificationGuard]},
+  { path: '**', redirectTo: "/auth" }
 ];
 
 @NgModule({
