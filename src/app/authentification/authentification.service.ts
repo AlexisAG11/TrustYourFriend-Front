@@ -20,7 +20,6 @@ export class AuthentificationService {
         password: password,
       }
     ).pipe(catchError(this.handleError), tap(data => {
-      console.log('aa');
       this.handleAuthentification(data.user.name, data.token);
     }));
   }
@@ -39,7 +38,6 @@ export class AuthentificationService {
 
   private handleError(errorRes: HttpErrorResponse){
     // return throwError(errorRes.error.msg);
-    console.log("b");
     return throwError(() => errorRes.error.msg);
   }
 
@@ -68,7 +66,6 @@ export class AuthentificationService {
 
   private handleAuthentification(name: string, token: string){
     const user = new User(name, token);
-    console.log('a');
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user))
   }
