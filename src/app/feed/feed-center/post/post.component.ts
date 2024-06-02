@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { FeedService } from '../../feed.service';
 
 @Component({
@@ -28,6 +28,8 @@ export class PostComponent implements OnInit{
   @Input() places: any;
   @Input() idUser: any;
   @Input() index: number = 0;
+  @Input() types: any[] = [];
+  @Input() adresses: any[] = [];
   deletePlace: boolean = false;
   editMode:boolean = false;
   selectedFile:any
@@ -35,8 +37,6 @@ export class PostComponent implements OnInit{
   placeBeforeEdit:any[] = [];
 
   // for edit mode order list
-  types: any[] = [];
-  adresses: any[] = [];
   filteredAddress: string[] = [];
   filteredType: string[] = [];
   inputAddressValue: string = "";
@@ -48,12 +48,6 @@ export class PostComponent implements OnInit{
 
   ngOnInit(): void {
     this.urlImage = this.place.imageUrl;
-    this.feedService.fetchAllTypes().subscribe((data) => {
-      this.types = data;
-    });
-    this.feedService.fetchAllAddresses().subscribe((data) => {
-      this.adresses = data;
-    });
   }
 
   onDeleteAddress(name: string, id: string) {
@@ -79,7 +73,6 @@ export class PostComponent implements OnInit{
     fd.append('type', type);
     fd.append('address', address);
     fd.append('comment', comment);
-    console.log(id);
     this.http.patch(environment.apiUrl + '/places/' + id, fd).subscribe(res => {
         this.editMode = false; 
     })
@@ -134,7 +127,6 @@ export class PostComponent implements OnInit{
     this.keyInputType = true;
     const valueRaw = event.target.value.toLowerCase();
     const value = valueRaw.charAt(0).toUpperCase() + valueRaw.slice(1);
-    console.log(this.types);
     this.filteredType = [];
 
     if(value.length === 0){

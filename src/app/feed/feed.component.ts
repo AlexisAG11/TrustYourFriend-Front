@@ -18,9 +18,28 @@ export class FeedComponent implements OnInit {
   idPlace: string = "";
   namePlace: string = "";
 
+  places = [];
+  idUser = "";
+  types: any[] = [];
+  adresses: any[] = [];
+
   constructor(private feedService: FeedService){}
 
   ngOnInit(): void {
+
+    this.feedService.fetchAllPlaces().subscribe(data => {
+      this.places = data.modifiedPlaces;
+      this.idUser = data.user;
+    })
+
+    this.feedService.fetchAllTypes().subscribe((data) => {
+      this.types = data;
+    });
+    this.feedService.fetchAllAddresses().subscribe((data) => {
+      this.adresses = data;
+    });
+
+
     // when we call the confirmation dialog for deleting a friend
     this.feedService.displayConfirmationFriendSubject.subscribe((data) => {
       this.displayConfirmation = data.display;

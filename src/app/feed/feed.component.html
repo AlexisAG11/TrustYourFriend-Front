@@ -1,9 +1,9 @@
 <div class="global-grid">
     <div class="filterbar">
-        <app-feed-left></app-feed-left>
+        <app-feed-left [types]="types" [adresses]="adresses"></app-feed-left>
     </div>
     <div class="middle-side">
-        <app-feed-center></app-feed-center>
+        <app-feed-center [places]="places" [idUser]="idUser" [types]="types" [adresses]="adresses"></app-feed-center>
     </div>
     <div class="friendbar">
         <app-feed-right></app-feed-right>

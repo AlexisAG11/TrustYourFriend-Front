@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FeedService } from '../feed.service';
 import { HttpHeaders } from '@angular/common/http';
@@ -24,17 +24,15 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
 
   sub: Subscription = new Subscription();
   sub2: Subscription = new Subscription();
-  places = [];
-  idUser = "";
+  @Input() places = [];
+  @Input() idUser = "";
+  @Input() types: any[] = [];
+  @Input() adresses: any[] = [];
+
+
   constructor(private feedService: FeedService, private authService: AuthentificationService){}
 
   ngOnInit(): void {
-    this.sub = this.feedService.fetchAllPlaces().subscribe(data => {
-      this.places = data.modifiedPlaces;
-      console.log(this.places);
-      this.idUser = data.user;
-    })
-
     this.sub2 = this.feedService.placeSubject.subscribe( data => {
       this.places = data.modifiedPlaces;
     })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FeedService } from '../feed.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,8 @@ import { HttpParams } from '@angular/common/http';
 export class FeedLeftComponent {
   sub: Subscription = new Subscription();
   friends:any[] = [];
-  types:any[] = [];
-  addresses:any[] = [];
+  @Input() types:any[] = [];
+  @Input() adresses:any[] = [];
   activeUser: string = "";
   filterParams: string = "";
   queryParams = new HttpParams();
@@ -23,14 +23,6 @@ export class FeedLeftComponent {
   ngOnInit(): void {
     this.feedService.fetchAllFriends().subscribe(data => {
       this.friends = data.friends;
-    });
-
-    this.feedService.fetchAllTypes().subscribe((data) => {
-      this.types = data;
-    });
-
-    this.feedService.fetchAllAddresses().subscribe((data) => {
-      this.addresses = data;
     });
 
     this.feedService.deleteFriendSubject.subscribe((id) => {

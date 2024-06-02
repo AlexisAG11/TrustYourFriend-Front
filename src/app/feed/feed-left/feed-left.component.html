@@ -42,8 +42,8 @@
             <img class="bottom-arrow" src="../../assets/images/location-sign-svgrepo-com.svg" alt="">
         </div>
     </div>
-    <div [ngClass]="{'list-type':true, 'list-adresse-scroll':addresses.length>5}">        
-        <button *ngFor="let address of  addresses" class="one-adresse" (click)="filterByAddress(address)">
+    <div [ngClass]="{'list-type':true, 'list-adresse-scroll':adresses.length>5}">        
+        <button *ngFor="let address of  adresses" class="one-adresse" (click)="filterByAddress(address)">
             <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
                 <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
             </div>  

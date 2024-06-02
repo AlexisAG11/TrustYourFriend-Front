@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { catchError, Subject, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { FeedService } from '../../feed.service';
 
 @Component({
