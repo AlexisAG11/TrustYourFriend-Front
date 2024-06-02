@@ -49,7 +49,6 @@ export class AuthentificationComponent implements OnDestroy {
     if (this.isConnexion) {
       this.authObs = this.authService.login(email, password).subscribe(data => {
           this.isLoading = false;
-          this.authService.setLocalStorage(data.token);
           this.router.navigate(['/feed']);
         }, errorMessage => {
           this.isLoading = false;
@@ -63,7 +62,6 @@ export class AuthentificationComponent implements OnDestroy {
         const name = form.value.groupName.name;
         this.authObs = this.authService.register(name, email, password).subscribe(data => {
         this.isLoading = false;
-        this.authService.setLocalStorage(data.token);
         this.router.navigate(['/feed']);
       }, errorMessage => {
         this.isLoading = false;

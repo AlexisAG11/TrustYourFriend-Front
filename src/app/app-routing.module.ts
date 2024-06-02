@@ -15,7 +15,7 @@ const routes: Routes = [
   // { path: 'add-address', component: AddAddressComponent},
   { path: 'add-friends', component: AddFriendsComponent, canActivate: [AuthentificationGuard]},
   // { path: 'add-friends', component: AddFriendsComponent},
-  { path: '**', redirectTo: "/auth" }
+  { path: '*', redirectTo: "/auth" }
 ];
 
 @NgModule({

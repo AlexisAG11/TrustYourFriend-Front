@@ -20,7 +20,7 @@ export class AuthentificationService {
         password: password,
       }
     ).pipe(catchError(this.handleError), tap(data => {
-      this.handleAuthentification(data.name, data.token);
+      this.handleAuthentification(data.user.name, data.token);
     }));
   }
 
@@ -32,7 +32,7 @@ export class AuthentificationService {
         password: password,
       }
     ).pipe(catchError(this.handleError), tap(data => {
-      this.handleAuthentification(data.name, data.token);
+      this.handleAuthentification(data.user.name, data.token);
     }));
   }
 
@@ -41,20 +41,37 @@ export class AuthentificationService {
     return throwError(() => errorRes.error.msg);
   }
 
+  autoLogin(){
+    interface UserData {
+      name: string;
+      _token: string;
+    }
+    
+    // Retrieve the item from localStorage
+    const userDataJson = localStorage.getItem('userData');
+    // Use a type guard to ensure we only parse if the item is not null
+    let userData: UserData | null = null;
+    if (userDataJson) {
+      userData = JSON.parse(userDataJson) as UserData;
+    }
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(userData.name, userData._token);
+    if (loadedUser.token) {
+        this.user.next(loadedUser);
+    }
+}
+
   private handleAuthentification(name: string, token: string){
     const user = new User(name, token);
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user))
   }
 
-  setLocalStorage(token: string) {
-    localStorage.setItem('token', token);
-  }
-
-  getLocalStorage(){
-    return localStorage.getItem('token');
-  }
 
   deleteLocalStorage(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
   }
 }
