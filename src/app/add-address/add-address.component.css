@@ -3,13 +3,12 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: rgb(241, 241, 241);
     font-size: 14px;
-    background-color: rgb(234, 234, 234);
+    background-color: white;
 }
 
 .form {
-    background-color: rgb(23,34,52);
+    background-color: rgb(245,245,245);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     width: 1000px;
     height: 600px;
@@ -18,14 +17,13 @@
     border-radius: 20px;
     overflow: hidden;
     position: relative;
+    justify-content: center;
 }
 
 .info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* padding-left: 70px; */
 }
 
 .titre {
@@ -43,38 +41,53 @@
 
 .info-content-title {
     font-weight: 600;
+    font-size: 14px;
 }
 
 .content {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+.double-content {
+    display: flex;
+    flex-direction: row;
     gap: 10px;    
 }
 
 input, select {
-    width: 310px;
-    height: 30px;
+    width: 410px;
+    height: 40px;
     border-radius: 5px;
-    border: none;
     padding: 5px ;
     font-family: inherit;
     box-sizing: border-box;
+    outline: none;
+    border: 1px solid #eceaea;
+    font-size: 14px;
+}
+
+.double-content input {
+    width: 200px;
 }
 
 textarea {
-    width: 300px;
-    height: 70px;
+    width: 410px;
+    height: 80px;
     border-radius: 5px;
-    border: none;
+    box-sizing: border-box;
     resize: none;
     padding: 5px ;
     font-family: inherit;
+    outline: none;
+    border: 1px solid #eceaea;
+    font-size: 14px;
 }
 input:focus,
 textarea:focus {
     outline: none;
-    border: 2px solid #0fc1d8
-    
+    border: 1px solid #3a3939  
 }
 
 .img-ajouter-adresse {
@@ -82,7 +95,7 @@ textarea:focus {
     width: 40%;
 }
 .location-logo {
-    background-color: #0fc1d8;
+    background-color: rgb(201,201,201);
     opacity: 0.8;
     display: flex;
     justify-content: center;   
@@ -103,14 +116,14 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .button-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .submit-button {
@@ -118,10 +131,12 @@ textarea:focus {
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 15px;
-    background-color: #0fc1d8;
+    margin-top: 20px;
+    background-color: rgb(15, 20, 25);
+    color: rgb(242, 239, 239);
     border: none;
     border-radius: 10px;
+    font: inherit;
     font-weight: bold;
     font-size: 16px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -132,8 +147,7 @@ textarea:focus {
     cursor: pointer;
 }
 .submit-button:not(:disabled):hover{
-    background-color: #00b1ca;
-
+    background-color: rgb(47, 44, 44);
 }
 
 input.ng-invalid.ng-touched {
@@ -143,36 +157,43 @@ input.ng-invalid.ng-touched {
 .label-file-container{
     cursor: pointer;
     display: flex;
-    flex-direction: row;
-    gap: 5px;
-    background-color: rgb(23,34,52);;
-    padding: 5px;
-    border: 1px solid #00b1ca;
+    /* flex-direction: row; */
+    /* gap: 5px; */
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #eceaea;
+    justify-content: center;
     border-radius: 5px;
-    
+
+}
+.label-file-container:hover {
+    background-color: #eceaea;
 }
 .label-file {
-    color: #00b1ca;
+    color: black;
     font-weight: bold;
     text-decoration: underline;
     display: flex;
     align-items: center;
-}
-.label-file:hover {
-    color: #25a5c4;
 }
 
 .input-file {
     display: none;
 }
 
+.required-title::after {
+    content: " *";
+    color: red;  /* Asterisk color */
+    margin-left: 5px;  /* Optional spacing */
+  }
+
 .upload-image {
-    width: 20px;
-    filter: invert(50%) sepia(67%) saturate(654%) hue-rotate(140deg) brightness(95%) contrast(102%);
+    width: 40px;
+    /* filter: invert(50%) sepia(67%) saturate(654%) hue-rotate(140deg) brightness(95%) contrast(102%); */
 }
 
 .goback-logo {
-    background-color: #0fc1d8;
+    background-color: rgb(201,201,201);
     opacity: 0.8;
     display: flex;
     justify-content: center;   
@@ -190,7 +211,7 @@ input.ng-invalid.ng-touched {
     transition: 0.2s background-color;
 }
 .goback-logo:hover {
-    background-color: #00b1ca;
+    background-color: rgb(166, 166, 166);
 }
 
 .goback-img {
@@ -251,3 +272,40 @@ ul li button{
 ul li button:hover {
     background-color: lightgray;
 }
+
+.upload-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.check-image {
+    width: 20px;
+    border: none;
+}
+.valid-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 30px;
+    padding: 8px;
+    margin-top: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #858888;
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}

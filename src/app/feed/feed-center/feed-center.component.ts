@@ -28,6 +28,7 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
   @Input() idUser = "";
   @Input() types: any[] = [];
   @Input() adresses: any[] = [];
+  inFiltering: boolean = false
 
 
   constructor(private feedService: FeedService, private authService: AuthentificationService){}
@@ -39,6 +40,10 @@ export class FeedCenterComponent implements OnInit,OnDestroy {
 
     this.feedService.deletePlaceSubject.subscribe((id) => {
       this.places = this.places.filter((ele:any) => ele._id != id);
+    })
+
+    this.feedService.inFilteringSubject.subscribe( data => {
+      this.inFiltering = data;
     })
 
   }

@@ -11,21 +11,23 @@
                     </div>
                 </div>
                 <div class="info-content">
-                    <div class="content">
-                        <div class="info-content-title">NOM</div>
-                        <input type="text" ngModel name="name" required>
-                    </div>
-                    <div class="content">
-                        <div class="info-content-title">TYPE</div>
-                        <div class="type-dropdown-wrap" #containerInputDropdownType>
-                            <input (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
-                            <ul *ngIf="filteredType.length !== 0" class="type-list">
-                                <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
-                            </ul>
+                    <div class="double-content">
+                        <div class="content">
+                            <div class="info-content-title required-title">NOM</div>
+                            <input type="text" ngModel name="name" required>
+                        </div>
+                        <div class="content">
+                            <div class="info-content-title required-title">TYPE</div>
+                            <div class="type-dropdown-wrap" #containerInputDropdownType>
+                                <input (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
+                                <ul *ngIf="filteredType.length !== 0" class="type-list">
+                                    <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="content">
-                        <div class="info-content-title">ADRESSE (Ville)</div>
+                        <div class="info-content-title required-title">ADRESSE (Ville)</div>
                         <div class="address-dropdown-wrap" #containerInputDropdown>
                             <input (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off">
                             <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
@@ -38,10 +40,15 @@
                     </div>
                     <div class="content">
                         <div class="info-content-title">PHOTO</div>
-                        <label for="file" class="label-file-container">
-                            <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
-                            <span class="label-file">Choisir une image</span>
-                        </label>
+                        <div class="upload-container">
+                            <label for="file" class="label-file-container">
+                                <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">  
+                            </label>
+                            <div *ngIf="selectedFile" class="valid-image">
+                                <span *ngIf="selectedFile">{{ this.selectedFile.name }}</span>
+                                <img src="../../assets/images/check-circle-svgrepo-com.svg" class="check-image" alt="">
+                            </div>
+                        </div>
                         <input id="file" class="input-file" type="file" (change)="onFileSelected($event)" ngModel name="file">
                     </div>
                     <div class="content">
@@ -49,12 +56,14 @@
                         <textarea class="commentaire" id="" cols="30" rows="10" ngModel name="comment"></textarea>
                     </div>
                 </div>
-                <div class="button-wrapper">
+                <div *ngIf="!isLoading" class="button-wrapper">
                     <button type="submit" [ngClass]="{'submit-button':true, 'submit-button-valid':addressForm.valid}" [disabled]="!addressForm.valid" >AJOUTER</button>
                 </div>
+                <div *ngIf="isLoading" class="loader"></div>
+
             </div>
-            <img class="img-ajouter-adresse" src="../../assets/images/alice-pasqual-ticuPP5l2qg-unsplash.jpg" alt="">
         </div>
     </div>
 </form>
 <app-confiration-dialog *ngIf="displayConfirmation" [message]="messageDelete" [addressConfirmation]="addressConfirmation" [typeConfirmation]="typeConfirmation" ></app-confiration-dialog>
+

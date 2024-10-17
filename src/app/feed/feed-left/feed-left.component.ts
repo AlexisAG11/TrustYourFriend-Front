@@ -17,6 +17,7 @@ export class FeedLeftComponent {
   activeUser: string = "";
   filterParams: string = "";
   queryParams = new HttpParams();
+  inFiltering: boolean = false;
 
   constructor(private feedService: FeedService){}
 
@@ -38,6 +39,9 @@ export class FeedLeftComponent {
 
   filterByName(friend: {_id: string, name: string, checkboxFilled: boolean}){
     friend.checkboxFilled = friend.checkboxFilled === false ? true : false;
+    // filtering loader
+    this.feedService.inFilteringSubject.next(true);
+    this.inFiltering = true;
     if (friend.checkboxFilled) {
       this.queryParams = this.queryParams.append('nameID', friend._id);
     }
@@ -55,12 +59,15 @@ export class FeedLeftComponent {
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
+      this.feedService.inFilteringSubject.next(false);
       this.feedService.placeSubject.next(data) // reload the place in the center
     })
   }
 
   filterByType(type: {name: string, checkboxFilled: boolean}){
     type.checkboxFilled = type.checkboxFilled === false ? true : false;
+    this.feedService.inFilteringSubject.next(true);
+    this.inFiltering = true;
     if (type.checkboxFilled) {
       this.queryParams = this.queryParams.append('typeID', type.name);
     }
@@ -75,12 +82,15 @@ export class FeedLeftComponent {
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
+      this.feedService.inFilteringSubject.next(false);
       this.feedService.placeSubject.next(data);
     })
   }
   
   filterByAddress(address: {name: string, checkboxFilled: boolean}){
     address.checkboxFilled = address.checkboxFilled === false ? true : false;
+    this.feedService.inFilteringSubject.next(true);
+    this.inFiltering = true;
     if (address.checkboxFilled) {
       this.queryParams = this.queryParams.append('addressID', address.name);
     }
@@ -95,6 +105,7 @@ export class FeedLeftComponent {
       }
     }
     this.feedService.fetchAllPlaces(this.queryParams).subscribe(data => {
+      this.feedService.inFilteringSubject.next(false);
       this.feedService.placeSubject.next(data)
     })
   }
