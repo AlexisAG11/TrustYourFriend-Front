@@ -27,6 +27,7 @@ export class AddAddressComponent implements OnInit {
   addressConfirmation: string = "";
   typeConfirmation: string = "";
   messageDelete: string = "";
+  isLoading: boolean = false;
 
 
   constructor(private http: HttpClient, private router: Router, private feedService: FeedService){}
@@ -92,6 +93,7 @@ export class AddAddressComponent implements OnInit {
     const address = form.value.selectedAddress;
     const comment = form.value.comment;
     const fd = new FormData();
+    this.isLoading = true;
     if (this.selectedFile) {
       fd.append('image', this.selectedFile);
     }
@@ -100,6 +102,7 @@ export class AddAddressComponent implements OnInit {
     fd.append('address', address);
     fd.append('comment', comment);
     this.http.post(environment.apiUrl + '/places', fd).subscribe(res => {
+      this.isLoading = false;
       this.router.navigate(['/feed']);
     })
   }
