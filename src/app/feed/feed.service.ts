@@ -96,4 +96,12 @@ export class FeedService {
       requestedFriendId: requestFriendId 
     })
   }
-}
+  
+  googleAddress(name: string, city: string){
+    return this.http.post(environment.apiUrl + '/addresses/googleAddress', 
+    {
+      textQuery: name + city
+    })
+  }
+
+}  

@@ -33,7 +33,11 @@
             <div class="feed-adresse">
                 <div>Adresse :</div>
                 <div class="adresse-wrapper">
-                    <div>{{place.address}}</div>
+                    <div *ngIf="!place?.fullAddress">{{place.address}}</div>
+                    <a *ngIf="place?.fullAddress" [href]="place.linkAddress" class="custom-link" target="_blank">
+                        {{ place.fullAddress }}
+                        </a>
+                    
                 </div>
             </div>
         </div>

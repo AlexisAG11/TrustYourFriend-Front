@@ -229,16 +229,14 @@ select, option {
     position: relative;
 }
 
+
+.type-list,
 .address-list {
-
-}
-
-ul {
     position: absolute;
     top: 30;
     left: 0;
     z-index: 2;
-    width: 310px;
+    width: 410px;
     max-height: 200px;
     overflow-y: auto;
     padding: 0;
@@ -254,11 +252,14 @@ ul li {
     border:none
 }
 
+.double-content ul {
+    width: 200px;
+}
+
 ul li button{
     border: none;
     outline: none;
     background: transparent;
-    padding: 7.5px;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -269,8 +270,13 @@ ul li button{
     transition: 0.2s background-color;
 }
 
+.type-list li button,
+.address-list li button {
+    padding: 7.5px;
+}
+
 ul li button:hover {
-    background-color: lightgray;
+    background-color: rgb(240, 240, 240);
 }
 
 .upload-container {
@@ -309,3 +315,65 @@ ul li button:hover {
     animation: l3 1s infinite linear;
   }
   @keyframes l3 {to{transform: rotate(1turn)}}
+
+
+ /* check the full address */
+
+.which-address-dialog {
+    position: fixed; /* Position the element absolutely */
+    top: 50%; /* Move the element 50% down from the top of the container */
+    left: 50%; /* Move the element 50% from the left of the container */
+    transform: translate(-50%, -50%); /* Translate the element back by 50% of its own width and height */
+    background-color: white; /* Example background color */
+    border-radius: 10px;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    z-index: 30;
+  }
+h1 {
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+.dialog-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 60px 40px;
+}
+.content-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.which-address-list {
+    padding: 0;
+    margin: 5px;
+}
+.btn-which-address {
+    font: inherit;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.container-which-address-list {
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 10px;
+}
