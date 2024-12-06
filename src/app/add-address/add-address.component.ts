@@ -4,11 +4,23 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FeedService } from '../feed/feed.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-add-address',
   templateUrl: './add-address.component.html',
-  styleUrls: ['./add-address.component.css']
+  styleUrls: ['./add-address.component.css'],
+  animations: [
+    trigger ('fadeInOut', [
+      transition (':enter', [
+        style ({ opacity: 0}), // Initial style
+        animate('0.2s', style({ opacity: 1})) // Animation
+      ]),
+      transition(':leave', [
+        animate('0.1s', style({ opacity: 0,}))
+      ])
+    ])
+  ]
 })
 export class AddAddressComponent implements OnInit {
 
@@ -19,6 +31,7 @@ export class AddAddressComponent implements OnInit {
   filteredType: string[] = [];
   inputAddressValue: string = "";
   inputTypeValue: string = "";
+  inputNameValue: string = "";
 
   keyInputAddress: boolean = false; // monitore when we key input on the input address
   keyInputType: boolean = false; // monitore when we key input on the input address
@@ -28,7 +41,13 @@ export class AddAddressComponent implements OnInit {
   typeConfirmation: string = "";
   messageDelete: string = "";
   isLoading: boolean = false;
+  googleAddressClean: any[] = [];
+  inWhichAddress: boolean = false;
+  isLoadingAddress: boolean = false;
+  afterChooseGoog: boolean = false;
 
+  addressChoosedObject: any = {};
+  currentCity: string = "";
 
   constructor(private http: HttpClient, private router: Router, private feedService: FeedService){}
 
@@ -49,9 +68,10 @@ export class AddAddressComponent implements OnInit {
 
     // result of adding the address
     this.feedService.addAddressSubject.subscribe((data) => {
+      this.isLoadingAddress = true;
       this.adresses = data.adresses;
       this.filteredAddress = [];
-      this.inputAddressValue = data.inputAddressValue;
+      this.sendRequestGoogleAPI();
     })
     
     // result of not adding the address
@@ -90,7 +110,7 @@ export class AddAddressComponent implements OnInit {
   onSubmitAddress(form: NgForm){
     const name = form.value.name;
     const type = form.value.selectedType;
-    const address = form.value.selectedAddress;
+    const address = this.currentCity;
     const comment = form.value.comment;
     const fd = new FormData();
     this.isLoading = true;
@@ -101,6 +121,10 @@ export class AddAddressComponent implements OnInit {
     fd.append('type', type);
     fd.append('address', address);
     fd.append('comment', comment);
+    if (Object.keys(this.addressChoosedObject).length > 0) {
+      fd.append('fullAddress', this.addressChoosedObject.fullAddress); // fullAddress
+      fd.append('linkAddress', this.addressChoosedObject.link); // link
+    }
     this.http.post(environment.apiUrl + '/places', fd).subscribe(res => {
       this.isLoading = false;
       this.router.navigate(['/feed']);
@@ -152,14 +176,17 @@ export class AddAddressComponent implements OnInit {
 
   onAddressClick(adress: any){
     this.keyInputAddress = false
+    this.currentCity = adress;
     if (adress.includes("ajouter ville")) {
       const adressRaw = adress.replace(' (ajouter ville)','');
       const confirmationObject = {address: adressRaw, display: true};
       this.feedService.displayConfirmationAddressSubject.next(confirmationObject);
     }
     else {
+      this.isLoadingAddress = true;
       this.filteredAddress = [];
       this.inputAddressValue = adress;
+      this.sendRequestGoogleAPI();
     }
   }
 
@@ -194,5 +221,23 @@ export class AddAddressComponent implements OnInit {
       this.inputTypeValue = "";
       this.filteredType = [];
     }
+  }
+
+  onGoogAddrClick(index: any) {
+    this.afterChooseGoog = true;
+    this.inWhichAddress = false;
+    this.addressChoosedObject = this.googleAddressClean[index]
+    this.inputAddressValue = this.googleAddressClean[index].fullAddress;
+  }
+
+  sendRequestGoogleAPI(){
+     // send a request for google api
+      this.feedService.googleAddress(this.inputNameValue, this.inputAddressValue).subscribe(data => {
+        this.isLoadingAddress = false;
+        this.googleAddressClean = Object.values(data);
+        if ( this.googleAddressClean.length >= 1 ) {
+          this.inWhichAddress = true;
+        }
+      });
   }
 }

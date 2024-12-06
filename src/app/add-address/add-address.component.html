@@ -14,12 +14,12 @@
                     <div class="double-content">
                         <div class="content">
                             <div class="info-content-title required-title">NOM</div>
-                            <input type="text" ngModel name="name" required>
+                            <input #input1="ngModel" type="text" [(ngModel)]="inputNameValue" name="name" required autocomplete="off">
                         </div>
                         <div class="content">
                             <div class="info-content-title required-title">TYPE</div>
                             <div class="type-dropdown-wrap" #containerInputDropdownType>
-                                <input (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
+                                <input #input2="ngModel" (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
                                 <ul *ngIf="filteredType.length !== 0" class="type-list">
                                     <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
                                 </ul>
@@ -27,16 +27,15 @@
                         </div>
                     </div>
                     <div class="content">
-                        <div class="info-content-title required-title">ADRESSE (Ville)</div>
-                        <div class="address-dropdown-wrap" #containerInputDropdown>
-                            <input (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off">
-                            <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
+                        <div *ngIf="!afterChooseGoog" class="info-content-title required-title">VILLE</div>
+                        <div *ngIf="afterChooseGoog" class="info-content-title required-title">ADRESSE</div>
+                        <div *ngIf="!isLoadingAddress" class="address-dropdown-wrap" #containerInputDropdown>
+                            <input (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off"     [disabled]="!input1.valid || !input2.valid || afterChooseGoog" >
+                            <ul *ngIf="filteredAddress.length !== 0" class="address-list">
                                 <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
                             </ul>
                         </div>
-                        <!-- <datalist id="address-dropdown">
-                            <option *ngFor="let adress of adresses" [value]="adress.name">{{ adress.name }}</option>
-                        </datalist> -->
+                        <div *ngIf="isLoadingAddress" class="loader"></div>
                     </div>
                     <div class="content">
                         <div class="info-content-title">PHOTO</div>
@@ -66,4 +65,18 @@
     </div>
 </form>
 <app-confiration-dialog *ngIf="displayConfirmation" [message]="messageDelete" [addressConfirmation]="addressConfirmation" [typeConfirmation]="typeConfirmation" ></app-confiration-dialog>
-
+<div *ngIf="inWhichAddress">
+    <div @fadeInOut class="which-address-dialog">
+        <div class="dialog-container">
+            <div class="content-text">
+                <h1>Choisir l'adresse</h1>
+            </div>
+            <div class="container-which-address-list">
+                <ul class="which-address-list">
+                    <li *ngFor="let googAddr of googleAddressClean; let i = index"><button type="button" class="btn-which-address" (click)="onGoogAddrClick(i)">{{googAddr.fullAddress}}</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+</div>

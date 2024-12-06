@@ -287,3 +287,17 @@ textarea:focus {
     outline: none;
     border: 1px solid black;
 }
+
+.custom-link {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Set custom color */
+    max-width: 200px;
+    display: inline-block;
+    white-space: nowrap;         /* Prevent wrapping to a new line */
+    overflow: hidden;            /* Hide overflowing text */
+    text-overflow: ellipsis;     /* Show ellipsis (...) for overflowing text */
+  }
+  
+.custom-link:hover {
+    text-decoration: underline;
+}
