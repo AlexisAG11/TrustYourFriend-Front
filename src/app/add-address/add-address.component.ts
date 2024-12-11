@@ -63,7 +63,6 @@ export class AddAddressComponent implements OnInit {
     this.feedService.displayConfirmationAddressSubject.subscribe((data) => {
       this.displayConfirmation = data.display;
       this.addressConfirmation = data.address;
-      console.log(this.addressConfirmation);
       this.messageDelete = `Ajouter adresse ${this.addressConfirmation} ?`
     })
 
@@ -234,7 +233,6 @@ export class AddAddressComponent implements OnInit {
 
   sendRequestGoogleAPI(){
      // send a request for google api
-      console.log(this.inputAddressValue);
       this.feedService.googleAddress(this.inputNameValue, this.inputAddressValue).subscribe(data => {
         this.isLoadingAddress = false;
         this.googleAddressClean = Object.values(data);

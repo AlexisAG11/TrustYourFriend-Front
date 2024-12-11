@@ -57,7 +57,6 @@ export class ConfirationDialogComponent implements OnInit{
         })
       }
       else if(this.addressConfirmation !== undefined && this.addressConfirmation !== "") {
-        console.log(this.addressConfirmation)
         this.feedService.addAdresses(this.addressConfirmation).subscribe(data1 => {
               this.feedService.fetchAllAddresses().subscribe((data2) => {
                 const addAddressObject = {adresses: data2, inputAddressValue: this.addressConfirmation};
