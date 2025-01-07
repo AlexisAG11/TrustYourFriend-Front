@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FeedService } from '../feed.service';
 import { Router } from '@angular/router';
@@ -30,6 +30,8 @@ export class FeedRightComponent implements OnInit {
   receivedFriendRequests = [];
   activeUser: string = "";
   isFriendList = true;
+
+  @Input() mobileMode:any;
 
   constructor(private feedService: FeedService,
               private router: Router,

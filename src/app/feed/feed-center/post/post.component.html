@@ -11,42 +11,25 @@
             <img class="delete-address" src="../../assets/images/trash-alt-svgrepo-com.svg" alt="" >
         </button>
     </div>
-    <div class="feed-info-photo">
-        <div class="photo-container">
-            <img class="photo" src="{{urlImage}}" alt="">
-        </div>
-        <div class="info">
-            <div class="feed-nom">
-                <div>Nom :</div>
-                <div class="name-wrapper">
-                    <div>
-                        {{place.name}}
-                    </div>
-                </div>
-            </div>
-            <div class="feed-type">
-                <div>Type :</div>
-                <div class="type-wrapper">
-                    <div>{{place.type}}</div>
-                </div>
-            </div>
-            <div class="feed-adresse">
-                <div>Adresse :</div>
-                <div class="adresse-wrapper">
-                    <div *ngIf="!place?.fullAddress">{{place.address}}</div>
-                    <a *ngIf="place?.fullAddress" [href]="place.linkAddress" class="custom-link" target="_blank">
-                        {{ place.fullAddress }}
-                        </a>
-                    
-                </div>
-            </div>
-        </div>
+    <div class="photo-container">
+        <img class="photo" src="{{urlImage}}" alt="">
+    </div>
+    <div class="info">
+        <div class="feed-nom">Nom :</div>
+        <div class="name-wrapper">{{place.name}}</div>
+        <div class="feed-type">Type :</div>
+        <div class="type-wrapper">{{place.type}}</div>
+        <div class="feed-adresse">Adresse :</div>
+        <div *ngIf="!place?.fullAddress" class="adresse-wrapper" >{{place.address}}</div>
+        <a *ngIf="place?.fullAddress" [href]="place.linkAddress" class="custom-link" target="_blank">
+                {{ place.fullAddress }}
+        </a>
     </div>
     <div class="feed-commentaire">
         {{place.comment}}
     </div>
 </div>
-<form @fadeInOut #editPost="ngForm" (ngSubmit)="EditPost(editPost, place._id)" class="post" *ngIf="editMode" >
+<form @fadeInOut #editPost="ngForm" (ngSubmit)="EditPost(editPost, place._id)" class="post-edit" *ngIf="editMode" >
     <div class="feed-auteur">
         <img class="feed-pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
         <div class="name">{{place.createdByName}}</div>
@@ -59,39 +42,32 @@
             <img class="delete-address" src="../../assets/images/trash-alt-svgrepo-com.svg" alt="" >
         </button>
     </div>
-    <div *ngIf="editMode" class="feed-info-photo">
-        <div class="photo-container">
-            <!-- <img class="photo-edit" src="{{urlImage}}" alt=""> -->
-            <img class="photo-edit" src="" alt="">
-            <label for="file" class="upload-btn" >
-                <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
-            </label>
-            <input id="file" class="input-file" type="file" #fileInput (change)="onFileSelected($event)" ngModel name="file" style="display: none;">
+    <div class="photo-container">
+        <!-- <img class="photo-edit" src="{{urlImage}}" alt=""> -->
+        <img class="photo-edit" src="" alt="">
+        <label for="file" class="upload-btn" >
+            <img class="upload-image" src="../../assets/images/upload-svgrepo-com.svg" alt="Upload Image">
+        </label>
+        <input id="file" class="input-file" type="file" #fileInput (change)="onFileSelected($event)" ngModel name="file" style="display: none;">
+    </div>
+    <div class="info">
+        <div class="feed-nom">Nom :</div>
+        <div class="input-name-wrapped">
+            <input class="input-name" type="text" [(ngModel)]="place.name" name="name">
         </div>
-        <div class="info">
-            <div class="feed-nom">
-                <div>Nom :</div>
-                <input class="input-name" type="text" [(ngModel)]="place.name" name="name">
-            </div>
-            <div class="feed-type">
-                <div>Type :</div>
-                <!-- <input type="text" [(ngModel)]="place.type" name="type"> -->
-                <div class="type-dropdown-wrap" #containerInputDropdownType>
-                    <input class="input-type" (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="place.type" name="type" required autocomplete="off">
-                    <ul *ngIf="filteredType.length !== 0" class="type-list">
-                        <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="feed-adresse">
-                <div>Adresse :</div>
-                <div class="address-dropdown-wrap" #containerInputDropdown>
-                    <input class="input-adress" (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="place.address" name="address" required autocomplete="off">
-                    <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
-                        <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
-                    </ul>
-                </div>
-            </div>
+        <div class="feed-type">Type :</div>
+        <div class="type-dropdown-wrap" #containerInputDropdownType>
+            <input class="input-type" (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="place.type" name="type" required autocomplete="off">
+            <ul *ngIf="filteredType.length !== 0" class="type-list">
+                <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
+            </ul>
+        </div>
+        <div class="feed-adresse">Adresse :</div>
+        <div class="address-dropdown-wrap" #containerInputDropdown>
+            <input class="input-adress" (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="place.address" name="address" required autocomplete="off">
+            <ul *ngIf="filteredAddress.length !== 0" class="adress-list">
+                <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
+            </ul>
         </div>
     </div>
     <div *ngIf="editMode" class="feed-commentaire">

@@ -10,6 +10,7 @@
 .form {
     background-color: rgb(245,245,245);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin: 20px;
     width: 1000px;
     height: 600px;
     display: flex;
@@ -366,6 +367,8 @@ h1 {
 .which-address-list {
     padding: 0;
     margin: 5px;
+    max-height: 300px; /* Limit the height */
+    overflow-y: auto;  /* Add vertical scrolling */
 }
 .btn-which-address {
     font: inherit;
@@ -376,4 +379,16 @@ h1 {
 .container-which-address-list {
     border: 1px solid rgb(177, 177, 177);
     border-radius: 10px;
+}
+
+
+@media (max-width: 500px) {
+    input,select,textarea, .type-list,
+    .address-list  {
+        width: 270px;
+    }
+
+    .double-content input, .double-content ul {
+        width: 130px;
+    }
 }

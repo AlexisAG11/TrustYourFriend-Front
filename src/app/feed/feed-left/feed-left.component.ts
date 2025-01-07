@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { FeedService } from '../feed.service';
 import { Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-feed-left',
@@ -18,6 +19,8 @@ export class FeedLeftComponent {
   filterParams: string = "";
   queryParams = new HttpParams();
   inFiltering: boolean = false;
+
+  @Input() mobileMode:any;
 
   constructor(private feedService: FeedService){}
 
@@ -109,5 +112,33 @@ export class FeedLeftComponent {
       this.feedService.placeSubject.next(data)
     })
   }
+
+// <!--  -->
+// <!--  -->
+// <!--  -->
+// <!-- MOBILE MODE -->
+// <!--  -->
+// <!--  -->
+// <!--  -->
+
+  filterMobile(){
+    this.feedService.activeDisplayFilter.next();
+  }
+  onClearFilter(){
+    this.friends.forEach(friend => {
+      friend.checkboxFilled = false; // Access each friend directly
+    });
+    this.types.forEach(type => {
+      type.checkboxFilled = false; // Access each friend directly
+    });
+    this.adresses.forEach(address => {
+      address.checkboxFilled = false; // Access each friend directly
+    });
+    this.feedService.fetchAllPlaces().subscribe(data => {
+      this.feedService.inFilteringSubject.next(false);
+      this.feedService.placeSubject.next(data) // reload the place in the center
+    })
+  }
+
 
 }

@@ -5,6 +5,14 @@
     position: relative;
 }
 
+.new-left-bar {
+    display: none; /* Hide the new left bar on larger screens */
+    position: sticky;
+    top: 0;
+    height: 300px;
+    justify-content: center;
+}
+
 .filterbar {
     /* position: fixed; */
     position: sticky;
@@ -21,4 +29,86 @@
     background-color: white;
     z-index: 20;
     height: 800px;
+}
+
+.filterbar-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-logo-container {
+    all: unset; /* Removes all default styles */
+    height: 35px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 50%;
+    padding: 2% 10% 2% 10%;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.filter-logo-container:hover {
+    background-color: rgb(210, 210, 210);
+}
+
+.filter-logo-container-clik {
+    background-color: rgb(210, 210, 210);
+}
+
+
+.img-filter {
+    width: 20px;
+    opacity: 0.6;
+}
+
+.filterbar-display {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 20;
+    /* height: 800px; */
+    display: block;
+}
+
+.friendbar-display {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 20;
+    /* height: 800px; */
+    display: block;
+}
+
+.middle-side {
+    display: block;
+}
+.middle-side-not-display {
+    display: none;
+}
+
+@media (max-width: 450px) {
+    .filtre-writing {
+        display: none;
+    }
+    .filter-logo-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 945px) {
+    .filterbar, .friendbar {
+        display: none;
+    }
+    .global-grid {
+        /* grid-template-columns: 500px; */
+        grid-template-columns: 1fr 3fr; /* Two columns: left bar and middle side */
+    }
+    .new-left-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

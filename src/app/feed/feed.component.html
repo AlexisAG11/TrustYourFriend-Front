@@ -1,12 +1,26 @@
 <div class="global-grid">
-    <div class="filterbar">
-        <app-feed-left [types]="types" [adresses]="adresses"></app-feed-left>
+    <div class="new-left-bar">
+        <button [ngClass]="{'filter-logo-container':true, 'filter-logo-container-clik':filterbarDisp}" (click)="displayfilter()">
+            <div class="filter-logo">
+                <img class="img-filter" src="../assets/images/filter-filled-tool-symbol-svgrepo-com.svg" alt="">
+            </div>
+            <div class="filtre-writing">Filtre</div>
+        </button>
+        <button [ngClass]="{'filter-logo-container':true, 'filter-logo-container-clik':friendbarDisp}" (click)="displayFriend()">
+            <div class="filter-logo">
+                <img class="img-filter" src="../assets/images/friends-icon.svg" alt="">
+            </div>
+            <div class="filtre-writing">Amis</div>
+        </button>
     </div>
-    <div class="middle-side">
+    <div [ngClass]="filterbarDisp ? 'filterbar-display' : 'filterbar'">
+        <app-feed-left [types]="types" [adresses]="adresses" [mobileMode]="mobileMode"></app-feed-left>
+    </div>
+    <div [ngClass]="!middlebarDisp ? 'middle-side' : 'middle-side-not-display'">
         <app-feed-center [places]="places" [idUser]="idUser" [types]="types" [adresses]="adresses"></app-feed-center>
     </div>
-    <div class="friendbar">
-        <app-feed-right></app-feed-right>
+    <div [ngClass]="friendbarDisp ? 'friendbar-display' : 'friendbar'">
+        <app-feed-right [mobileMode]="mobileMode"></app-feed-right>
     </div>
 </div>
 <app-confiration-dialog *ngIf="displayConfirmation" [idFriend]="idFriend" [nameFriend]="nameFriend" [message]="messageDelete" [idPlace]="idPlace" [namePlace]="namePlace"></app-confiration-dialog>

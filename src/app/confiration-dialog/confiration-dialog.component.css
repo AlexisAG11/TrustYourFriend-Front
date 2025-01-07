@@ -15,8 +15,7 @@
 .ok-button, .not-ok-button {
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 90px;
-    padding-right: 90px;
+    width: 80%;
     font: inherit;
     font-size: 18px;
     background-color: rgb(15, 20, 25);
@@ -70,6 +69,8 @@
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
+    width: 100%;
+    align-items: center;
 }
 
 h1 {
@@ -89,4 +90,10 @@ p {
     align-items: center;
     margin-top: 30px;
     
+}
+
+@media (max-width: 500px) {
+    .dialog {
+        width: 250px;
+    }
 }

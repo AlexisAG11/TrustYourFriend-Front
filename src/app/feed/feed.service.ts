@@ -22,6 +22,7 @@ export class FeedService {
   notAddTypeSubject = new Subject<any>();
   deletePlaceSubject = new Subject<any>();
   inFilteringSubject = new Subject<any>();
+  activeDisplayFilter = new Subject<void>();
 
   
   constructor(private http: HttpClient) { } 

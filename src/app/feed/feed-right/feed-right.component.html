@@ -1,43 +1,108 @@
-<div class="friend-logo-container">
-    <div class="friend-logo">
-        <img class="img-friend" src="../../assets/images/friends-icon.svg" alt="">
-    </div>
-</div>
-<div class="userActive">
-        <div class="pp-user-active-container">
-            <img class="pp-user-active" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-            <div class="online"></div>
+<div *ngIf="!mobileMode">
+    <div class="friend-logo-container">
+        <div class="friend-logo">
+            <img class="img-friend" src="../../assets/images/friends-icon.svg" alt="">
         </div>
-    <div class="name-user-active">{{activeUser}}</div>
-    <div class="logout" (click)="logout()">
-        <img class="logout-img" src="../../assets/images/logout-svgrepo-com.svg" alt="">
     </div>
-</div>
-<div class="button-ami-container">
-    <button class="button-ami" (click)="addFriend()"> AJOUTER AMI</button>
-</div>
-<div class="group-list">
-    <div class="btn-slider" [ngClass]="{'btn-slider-slide': !isFriendList}"></div>
-    <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isFriendList}" (click)="isFriendList = true">Amis</button>
-    <button type="button" class="log-button" [ngClass]="{'desac-btn' : isFriendList}" (click)="isFriendList = false">Demandes</button>
-    <div *ngIf="receivedFriendRequests.length !== 0" class="notification-count" [ngClass]="{'notification-count-on' : !isFriendList}">{{receivedFriendRequests.length}}</div>
+    <div class="userActive">
+            <div class="pp-user-active-container">
+                <img class="pp-user-active" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+                <div class="online"></div>
+            </div>
+        <div class="name-user-active">{{activeUser}}</div>
+        <div class="logout" (click)="logout()">
+            <img class="logout-img" src="../../assets/images/logout-svgrepo-com.svg" alt="">
+        </div>
+    </div>
+    <div class="button-ami-container">
+        <button class="button-ami" (click)="addFriend()"> AJOUTER AMI</button>
+    </div>
+    <div class="group-list">
+        <div class="btn-slider" [ngClass]="{'btn-slider-slide': !isFriendList}"></div>
+        <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isFriendList}" (click)="isFriendList = true">Amis</button>
+        <button type="button" class="log-button" [ngClass]="{'desac-btn' : isFriendList}" (click)="isFriendList = false">Demandes</button>
+        <div *ngIf="receivedFriendRequests.length !== 0" class="notification-count" [ngClass]="{'notification-count-on' : !isFriendList}">{{receivedFriendRequests.length}}</div>
+    </div>
+    
+    <div *ngIf="isFriendList" class="all-friends">
+        <app-friends-list @fadeOut *ngFor="let friend of friends" [friend]="friend" [friends]="friends"></app-friends-list>
+    </div>
+    <div *ngIf="!isFriendList" class="all-friends">
+        <div @fadeOut *ngFor="let receivedFriendRequest of receivedFriendRequests">
+            <div class="friend">
+                <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+                <div class="name">{{receivedFriendRequest['name']}}</div>
+                <div class="img-container">
+                    <button type="button" class="validation-btn" (click)="onAcceptFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                        <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+                    </button>
+                    <button type="button" class="unvalidation-btn" (click)="onDeclineFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                        <img class="unvalidation-img" src="../../assets/images/cross-circle-1-svgrepo-com.svg" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div *ngIf="isFriendList" class="all-friends">
-    <app-friends-list @fadeOut *ngFor="let friend of friends" [friend]="friend" [friends]="friends"></app-friends-list>
-</div>
-<div *ngIf="!isFriendList" class="all-friends">
-    <div @fadeOut *ngFor="let receivedFriendRequest of receivedFriendRequests">
-        <div class="friend">
-            <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
-            <div class="name">{{receivedFriendRequest['name']}}</div>
-            <div class="img-container">
-                <button type="button" class="validation-btn" (click)="onAcceptFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
-                    <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
-                </button>
-                <button type="button" class="unvalidation-btn" (click)="onDeclineFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
-                    <img class="unvalidation-img" src="../../assets/images/cross-circle-1-svgrepo-com.svg" alt="">
-                </button>
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!-- MOBILE MODE -->
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+<div *ngIf="mobileMode" style="
+    border-left: 1px solid rgb(236, 236, 236);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    height: 100vh;
+    ">
+    <div class="friend-logo-container">
+        <div class="friend-logo">
+            <img class="img-friend" src="../../assets/images/friends-icon.svg" alt="">
+        </div>
+    </div>
+    <div class="userActive-mobile">
+            <div class="pp-user-active-container">
+                <img class="pp-user-active" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+                <div class="online"></div>
+            </div>
+        <div class="name-user-active">{{activeUser}}</div>
+        <div class="logout" (click)="logout()">
+            <img class="logout-img" src="../../assets/images/logout-svgrepo-com.svg" alt="">
+        </div>
+    </div>
+    <div class="button-ami-container-mobile">
+        <button class="button-ami" (click)="addFriend()"> AJOUTER AMI</button>
+    </div>
+    <div class="group-list-mobile">
+        <div class="btn-slider" [ngClass]="{'btn-slider-slide': !isFriendList}"></div>
+        <button type="button" class="log-button" [ngClass]="{'desac-btn' : !isFriendList}" (click)="isFriendList = true">Amis</button>
+        <button type="button" class="log-button" [ngClass]="{'desac-btn' : isFriendList}" (click)="isFriendList = false">Demandes</button>
+        <div *ngIf="receivedFriendRequests.length !== 0" class="notification-count" [ngClass]="{'notification-count-on' : !isFriendList}">{{receivedFriendRequests.length}}</div>
+    </div>
+    
+    <div *ngIf="isFriendList" class="all-friends-mobile">
+        <app-friends-list @fadeOut *ngFor="let friend of friends" [friend]="friend" [friends]="friends"></app-friends-list>
+    </div>
+    <div *ngIf="!isFriendList" class="all-friends-mobile">
+        <div @fadeOut *ngFor="let receivedFriendRequest of receivedFriendRequests">
+            <div class="friend">
+                <img class="pp" src="../../assets/images/avatar-svgrepo-com.svg" alt="">
+                <div class="name">{{receivedFriendRequest['name']}}</div>
+                <div class="img-container">
+                    <button type="button" class="validation-btn" (click)="onAcceptFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                        <img class="validation-img" src="../../assets/images/check-circle-svgrepo-com.svg" alt="">
+                    </button>
+                    <button type="button" class="unvalidation-btn" (click)="onDeclineFriendRequest(receivedFriendRequest['_id'], receivedFriendRequest)">
+                        <img class="unvalidation-img" src="../../assets/images/cross-circle-1-svgrepo-com.svg" alt="">
+                    </button>
+                </div>
             </div>
         </div>
     </div>

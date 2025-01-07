@@ -1,53 +1,132 @@
-<div class="filter-logo-container">
-    <div class="filter-logo">
-        <img class="img-filter" src="../../assets/images/filter-filled-tool-symbol-svgrepo-com.svg" alt="">
-    </div>
-</div>
-<div class="filter-type-friend">
-    <div class="friend-container">
-        <div class="friend-text">Amis</div>
-        <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/friends-icon.svg" alt="">
+<div *ngIf="!mobileMode">
+    <div class="filter-logo-container">
+        <div class="filter-logo">
+            <img class="img-filter" src="../../assets/images/filter-filled-tool-symbol-svgrepo-com.svg" alt="">
         </div>
     </div>
-    <div [ngClass]="{'list-type':true, 'list-type-scroll':friends.length>5}">
-        <button *ngFor="let friend of friends" class="one-friend" (click)="filterByName(friend)">
-            <div [ngClass]="{'checkbox':true, 'checkbox-click':friend.checkboxFilled!== false}">
-                <img *ngIf="friend.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
-            </div>  
-            <div class="div-name-friend">{{ friend['name'] }}</div>
-        </button>
-    </div>
-</div>
-<div class="filter-type-type">
-    <div class="type-container">
-        <div class="type-text">Type</div>
-        <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/fork-and-knife-meal-svgrepo-com.svg" alt="">
+    <div class="filter-type-friend">
+        <div class="friend-container">
+            <div class="friend-text">Amis</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/friends-icon.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-type-scroll':friends.length>5}">
+            <button *ngFor="let friend of friends" class="one-friend" (click)="filterByName(friend)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click':friend.checkboxFilled!== false}">
+                    <img *ngIf="friend.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ friend['name'] }}</div>
+            </button>
         </div>
     </div>
-    <div [ngClass]="{'list-type':true, 'list-type-scroll':types.length>5}">
-        <button *ngFor="let type of types" class="one-type" (click)="filterByType(type)">
-            <div [ngClass]="{'checkbox':true, 'checkbox-click':type.checkboxFilled!== false}">
-                <img *ngIf="type.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
-            </div>  
-            <div class="div-name-friend">{{ type.name }}</div>
-        </button>
-    </div>
-</div>
-<div class="filter-type-adresse">
-    <div class="adresse-container">
-        <div class="adresse-text">Adresse</div>
-        <div class="bottom-arrow-container">
-            <img class="bottom-arrow" src="../../assets/images/location-sign-svgrepo-com.svg" alt="">
+    <div class="filter-type-type">
+        <div class="type-container">
+            <div class="type-text">Type</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/fork-and-knife-meal-svgrepo-com.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-type-scroll':types.length>5}">
+            <button *ngFor="let type of types" class="one-type" (click)="filterByType(type)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click':type.checkboxFilled!== false}">
+                    <img *ngIf="type.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ type.name }}</div>
+            </button>
         </div>
     </div>
-    <div [ngClass]="{'list-type':true, 'list-adresse-scroll':adresses.length>5}">        
-        <button *ngFor="let address of  adresses" class="one-adresse" (click)="filterByAddress(address)">
-            <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
-                <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
-            </div>  
-            <div class="div-name-friend">{{ address.name }}</div>
-        </button>
+    <div class="filter-type-adresse">
+        <div class="adresse-container">
+            <div class="adresse-text">Adresse</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/location-sign-svgrepo-com.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-adresse-scroll':adresses.length>5}">        
+            <button *ngFor="let address of  adresses" class="one-adresse" (click)="filterByAddress(address)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
+                    <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ address.name }}</div>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!-- MOBILE MODE -->
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+<div *ngIf="mobileMode" style="
+    border-left: 1px solid rgb(236, 236, 236);
+    padding-left: 10px;">
+    <div class="filter-logo-container">
+        <div class="filter-logo">
+            <img class="img-filter" src="../../assets/images/filter-filled-tool-symbol-svgrepo-com.svg" alt="">
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button class="unvalidation-btn" (click)="onClearFilter()">
+            <img class="unvalidation-img" src="../../assets/images/cross-circle-svgrepo-com.svg" alt="">
+        </button>     
+    </div>
+    <div class="filter-type-friend">
+        <div class="friend-container">
+            <div class="friend-text">Amis</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/friends-icon.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-type-scroll':friends.length>5}">
+            <button *ngFor="let friend of friends" class="one-friend" (click)="filterByName(friend)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click':friend.checkboxFilled!== false}">
+                    <img *ngIf="friend.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ friend['name'] }}</div>
+            </button>
+        </div>
+    </div>
+    <div class="filter-type-type">
+        <div class="type-container">
+            <div class="type-text">Type</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/fork-and-knife-meal-svgrepo-com.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-type-scroll':types.length>5}">
+            <button *ngFor="let type of types" class="one-type" (click)="filterByType(type)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click':type.checkboxFilled!== false}">
+                    <img *ngIf="type.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ type.name }}</div>
+            </button>
+        </div>
+    </div>
+    <div class="filter-type-adresse">
+        <div class="adresse-container">
+            <div class="adresse-text">Adresse</div>
+            <div class="bottom-arrow-container">
+                <img class="bottom-arrow" src="../../assets/images/location-sign-svgrepo-com.svg" alt="">
+            </div>
+        </div>
+        <div [ngClass]="{'list-type':true, 'list-adresse-scroll':adresses.length>5}">        
+            <button *ngFor="let address of  adresses" class="one-adresse" (click)="filterByAddress(address)">
+                <div [ngClass]="{'checkbox':true, 'checkbox-click': address.checkboxFilled!== false}">
+                    <img *ngIf="address.checkboxFilled!== false" class="check-img" src="../../assets/images/check-svgrepo-com.svg" alt="">
+                </div>  
+                <div class="div-name-friend">{{ address.name }}</div>
+            </button>
+        </div>
+    </div>
+    
+    <div style="display: flex; justify-content: center;">   
+        <button class="filter-button" (click)="filterMobile()">Filtrer</button>
     </div>
 </div>
