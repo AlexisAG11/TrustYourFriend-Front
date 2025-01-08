@@ -206,12 +206,14 @@ export class AddAddressComponent implements OnInit {
 
   onInputAdressBlur(event:any, container:any){
     const clickedElement = event.relatedTarget as HTMLElement;
-    if (!container.contains(clickedElement) && this.keyInputAddress) {
-      // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
-      // on the suggestion dropdown
-      this.inputAddressValue = "";
-      this.filteredAddress = [];
-    }
+    setTimeout(() => {
+      if (!container.contains(clickedElement) && this.keyInputAddress) {
+        // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
+        // on the suggestion dropdown
+        this.inputAddressValue = "";
+        this.filteredAddress = [];   
+      }
+    }, 150);
   }
 
   onInputTypeBlur(event:any, container:any){
