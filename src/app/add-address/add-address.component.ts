@@ -216,12 +216,14 @@ export class AddAddressComponent implements OnInit {
 
   onInputTypeBlur(event:any, container:any){
     const clickedElement = event.relatedTarget as HTMLElement;
-    if (!container.contains(clickedElement) && this.keyInputType) {
-      // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
-      // on the suggestion dropdown
-      this.inputTypeValue = "";
-      this.filteredType = [];
-    }
+    setTimeout(() => {
+      if (!container.contains(clickedElement) && this.keyInputType) {
+        // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
+        // on the suggestion dropdown
+        this.inputTypeValue = "";
+        this.filteredType = [];      
+      }
+    }, 150);
   }
 
   onGoogAddrClick(index: any) {

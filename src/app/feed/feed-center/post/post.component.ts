@@ -164,12 +164,14 @@ export class PostComponent implements OnInit{
 
   onInputTypeBlur(event:any, container:any){
     const clickedElement = event.relatedTarget as HTMLElement;
-    if (!container.contains(clickedElement) && this.keyInputType) {
-      // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
-      // on the suggestion dropdown
-      this.place.type = "";
-      this.filteredType = [];
-    }
+    setTimeout(() => {
+      if (!container.contains(clickedElement) && this.keyInputType) {
+        // Reset input value only if clicked outside the container input field and and don't click (keyinputAdress false)
+        // on the suggestion dropdown
+        this.place.type = "";
+        this.filteredType = [];    
+      }
+    }, 150);
   }
 
 }
