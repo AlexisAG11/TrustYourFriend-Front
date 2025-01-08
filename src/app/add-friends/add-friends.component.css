@@ -79,6 +79,7 @@ input:focus {
 }
 .goback-logo {
     background-color: rgb(201,201,201);
+    color: black;
     opacity: 0.8;
     display: flex;
     justify-content: center;   

@@ -100,6 +100,7 @@
 .one-type,
 .one-adresse {
     display: flex;
+    color: black;
     flex-direction: row;
     gap: 7px;
     align-items: center;

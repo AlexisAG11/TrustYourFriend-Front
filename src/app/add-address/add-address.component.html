@@ -21,7 +21,7 @@
                             <div class="type-dropdown-wrap" #containerInputDropdownType>
                                 <input #input2="ngModel" (keyup)="onInputType($event)" (blur)="onInputTypeBlur($event, containerInputDropdownType)" type="text" [(ngModel)]="inputTypeValue" name="selectedType" required autocomplete="off">
                                 <ul *ngIf="filteredType.length !== 0" class="type-list">
-                                    <li *ngFor="let filterType of filteredType"><button type="button"  (click)="onTypeClick(filterType)">{{filterType}}</button></li>
+                                    <li *ngFor="let filterType of filteredType"><button type="button"  style="color: #000;" (click)="onTypeClick(filterType)">{{filterType}}</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                         <div *ngIf="!isLoadingAddress" class="address-dropdown-wrap" #containerInputDropdown>
                             <input (keyup)="onInputAdress($event)" (blur)="onInputAdressBlur($event, containerInputDropdown)" type="text" [(ngModel)]="inputAddressValue" name="selectedAddress" required autocomplete="off"     [disabled]="!input1.valid || !input2.valid || afterChooseGoog" >
                             <ul *ngIf="filteredAddress.length !== 0" class="address-list">
-                                <li *ngFor="let filterAdress of filteredAddress"><button type="button"  (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
+                                <li *ngFor="let filterAdress of filteredAddress"><button type="button"  style="color: #000;" (click)="onAddressClick(filterAdress)">{{filterAdress}}</button></li>
                             </ul>
                         </div>
                         <div *ngIf="isLoadingAddress" class="loader"></div>

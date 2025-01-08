@@ -195,6 +195,7 @@ input.ng-invalid.ng-touched {
 
 .goback-logo {
     background-color: rgb(201,201,201);
+    color: #000;
     opacity: 0.8;
     display: flex;
     justify-content: center;   
@@ -375,6 +376,7 @@ h1 {
     font-size: 18px;
     padding: 15px;
     border-radius: 5px;
+    color: #000;
 }
 .container-which-address-list {
     border: 1px solid rgb(177, 177, 177);
