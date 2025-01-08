@@ -45,6 +45,7 @@ p {
     height: 50px;
     margin-bottom: 20px;
     border-radius: 10px;
+    padding-right: 10px;
 }
 .group-login {
     margin-bottom: 40px;
@@ -173,7 +174,6 @@ button {
 
     .view-password-icon {
         width: 17px;
-        margin-right: 15px;
         cursor: pointer;
     }
 
