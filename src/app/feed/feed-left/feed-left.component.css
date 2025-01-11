@@ -88,6 +88,7 @@
 }
 .div-name-friend {
     transition: color 0.3s ease;
+    max-width: 110px;
 }
 .one-friend:hover .div-name-friend,
 .one-type:hover .div-name-friend,
@@ -99,11 +100,13 @@
 .one-friend,
 .one-type,
 .one-adresse {
+    all: unset;
     display: flex;
     color: black;
     flex-direction: row;
     gap: 7px;
     align-items: center;
+    justify-content: flex-start;
     border: none;
     cursor: pointer;
     background-color: transparent;
