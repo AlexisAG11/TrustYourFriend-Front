@@ -6,7 +6,7 @@ An app that let you centralize all your favorite addresses (restaurants, bars, .
 
 ## What Techno is used ?
 
-I use **Angular** and pure html and css for the frontend.
+I used **Angular** and pure html and css for the frontend.
 For the backend I used **Express.js** with **MongoDB** for the database.
 I also use **google API** and **AWS bucketS3**
 
