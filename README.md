@@ -1,5 +1,18 @@
 # TyfAngular
 
+## What is it
+
+An app that lets you centralize all your favorite addresses (restaurants, bars, etc.) and those of your friends. You can add friends, save addresses, and filter results by friend, city, or type of place.
+
+## What Techno is used
+
+I use **Angular** and pure html and css for the front end, I really wanted to work on the html/css without library to really master the basic
+For the backend I used **Express.js** with **MongoDB** for the database.
+I also use **google API** and **AWS bucketS3**
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
 ## Development server
